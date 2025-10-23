@@ -62,7 +62,7 @@ public class Comparison {
         System.out.println("나이를 입력하세요 : ");
         int age = sc.nextInt();
         String result = age >= 18 ? "성인" : "미성년자";
-        System.out.println(result);
+        System.out.println("당신은 " + result + " 입니다.");
 
         sc.close();
 }
