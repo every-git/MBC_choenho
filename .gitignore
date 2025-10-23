@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# IDE/workspace
+.metadata/
+
+# Git backup directories
+**/.git_backup_*/
+
+# Build outputs
+**/bin/
+**/target/
+
+# Eclipse
+**/.settings/
+**/.classpath
+**/.project
+
+# Logs
+*.log
