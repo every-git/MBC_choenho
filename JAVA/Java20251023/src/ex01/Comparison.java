@@ -74,6 +74,15 @@ public class Comparison {
         String result2 = numE % 2 == 0 ? "짝수" : "홀수";
         System.out.println(numE + "는 " + result2 + " 입니다.");
 
+        /*
+         * 정수를 입력 받아서, 3으로 나누어서 나머지가 0이면 3의 배수,
+         * 아닌 경우에 나머지가 1인 경우와 2인 경우를 출력
+         */
+        System.out.println("정수를 입력하세요 : ");
+        int numF = sc.nextInt();
+        String result3 = numF % 3 == 0 ? "3의 배수" : numF % 3 == 1 ? "나머지가 1" : "나머지가 2";
+        System.out.println(numF + "는 " + result3 + " 입니다.");
+
         sc.close();
 }
 
