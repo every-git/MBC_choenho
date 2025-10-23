@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>문화재</title>
+     <link href="css/style.css" rel="stylesheet">
+
+     <!--반응형-->
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="wrap">
+        <h1>우리의 문화재</h1>
+        <form>
+            <label>선택을 시작하겠습니까?</label>
+            <input type="checkbox" value="start">
+            <span class="start">시작함</span>
+            <div class="view">
+                <label>원하는 문화재는?</label>
+                <input type="radio" name="mun" value="석굴암" checked><span>석굴암</span><br>
+                <input type="radio" name="mun" value="남대문"><span>남대문</span><br>
+                <input type="radio" name="mun" value="독립기념관"><span>독립기념관</span><br>
+                <button type="button" onclick="">선택 완료</button>
+                <div class="imgbox">
+                    <img src="img/s.jpg" alt="석굴암">
+                    <img src="img/n.jpg" alt="남대문">
+                    <img src="img/d.jpg" alt="독립기념관">
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

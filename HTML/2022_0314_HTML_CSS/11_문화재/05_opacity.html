@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page Title</title>
+    <style>
+      /* 
+      input의[type="checkbox"] 문자검색해서 체크가 되면 투명도를 100% 
+      h1의 위치 확인, 요소의 투명도만 제어
+      */
+      input[type="checkbox"]:checked ~#view{opacity:1;}
+      #view{opacity:0;}
+    </style>
+  </head>
+  <body>
+
+    <input type="checkbox">
+    <span>문화재보기</span>
+
+    <div id="view">
+      <h1>문화재 종류는~</h1>
+
+    </div>
+
+    <h1>123</h1>
+
+  </body>
+</html>

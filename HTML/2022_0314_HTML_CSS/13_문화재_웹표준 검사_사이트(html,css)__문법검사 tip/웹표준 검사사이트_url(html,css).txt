@@ -1,0 +1,11 @@
+ - 웹표준 검사 서비스 사이트
+
+      W3C Markup Validation 의 문법검사를 통과하는지 체크해 보아야한다.
+
+
+
+http://validator.kldp.org/  
+
+
+
+http://validator.w3.org/ 

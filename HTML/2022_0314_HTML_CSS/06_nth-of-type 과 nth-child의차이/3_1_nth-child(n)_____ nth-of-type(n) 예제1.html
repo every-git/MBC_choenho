@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page Title</title>
+    <style>
+      /* 
+      nth-child(n)
+      부모 엘리먼트의 모든 자식 엘리먼트중 n번째
+      */
+      div > p:nth-child(3){color:red;}
+
+
+      /*
+      nth-of-type(n)
+      부모 엘리먼트의 특정(type) 자식 엘리먼트중 n번째
+      */
+      div > span:nth-of-type(2){color:blue;}
+    </style>
+  </head>
+  <body>
+
+    <div>
+      <p>1</p>
+      <span>2</span>
+      <p>3</p>
+      <span>4</span>
+      <p>5</p>
+    </div>
+
+
+  </body>
+</html>

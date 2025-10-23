@@ -1,0 +1,21 @@
+css charset 통일 시켜주기
+
+서로 다른 환경에서 개발 된 css, script의 인코딩 type을 맞춰주는 방법
+
+"UTF-8" 대문자로 쓰기
+
+
+
+css
+
+@charset "UTF-8";
+
+
+
+html
+<meta charset ="UTF-8"> 
+
+
+https://www.w3schools.com/html/html_charset.asp
+
+https://www.w3schools.com/cssref/pr_charset_rule.asp
