@@ -6,7 +6,7 @@ package ex01;
  * --A : 감소
  * B--
  */
-
+//20251023
 public class IncDec {
 
 	public static void main(String[] args) {

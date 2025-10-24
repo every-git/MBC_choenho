@@ -1,5 +1,5 @@
 package ex01;
-
+//20251023
 import java.util.Scanner;
 
 public class Comparison {

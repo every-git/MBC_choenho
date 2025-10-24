@@ -1,7 +1,7 @@
 package ex01;
 
 import java.util.Scanner;
-
+//20251023
 public class If6 {
 
     public static void main(String[] args) {
