@@ -1,0 +1,11 @@
+{
+  "java.project.sourcePaths": [
+    "JAVA/**/src"
+  ],
+  "java.project.outputPath": "JAVA/**/bin",
+  "java.project.referencedLibraries": [],
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.eclipse.downloadSources": true
+}
+
+

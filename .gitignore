@@ -13,8 +13,8 @@
 
 # Eclipse
 **/.settings/
-**/.classpath
-**/.project
+# **/.classpath     # Cursor/VSCode에서 Eclipse 프로젝트 인식을 위해 주석 처리
+# **/.project       # Cursor/VSCode에서 Eclipse 프로젝트 인식을 위해 주석 처리
 
 # Logs
 *.log
