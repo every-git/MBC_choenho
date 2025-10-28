@@ -3,15 +3,21 @@
   <head>
     <title>Page Title</title>
     <style>
-      /*자기자신*/
-      div#box{width:100px; height:100px; background-color:gold;}
+      /*div.box ==> class가 box인 태그 자신*/
+      /*div .box ==> div 안에 들어있는 box 클래스 요소*/
+      div .box{width:100px; height:100px; background-color:gold;
+      margin-bottom: 20px;}
     </style>
   </head>
   <body>
 
-    <div id="box">
-
+    <div class="box"></div>
+      <div>
+        <div class="box"></div>
+      </div>
     </div>
+    <div class="box"></div>
+  
 
   </body>
 </html>
