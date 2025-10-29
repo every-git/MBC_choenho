@@ -1,117 +1,75 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
-
-
   <head>
-
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
 
     <title>문화재</title>
 
     <style>
-
-      * { margin:0; padding:0; }
-
-      #wrap { width:100%; }
-
-
-
-      h1 { text-align:center; background:#666; color:#fff; padding:20px 0; }
-
-      form { width:95%; margin:0 auto;  }
-
-      label { display: block; background-color:yellowgreen; padding:10px 20px; color:#fff;
-
-        border-radius:10px;  margin:20px 0;  }
-
-      label:nth-of-type(2) { margin:20px 0; }
-
-
-
-
-
-      .view { transition:all 0.5s ease; opacity:0; }
-
-      span { padding:0 10px; font-size:14px;}
-
-      button { margin:10px 0; border:none; border-radius:8px; background-color:deepskyblue; color:#fff;
-
-        padding:5px 10px; }
-
-      .imgbox { width:500px; height:300px; padding:10px 0; position:relative; border-radius:20px; overflow:hidden;  }
-
-      .imgbox img { width:100%;  height:100%; position:absolute; top:0; left:0;  }
-
-      .imgbox img:not(:first-child) { display:none; }
-
-      input[type="radio"] { margin:10px 0; }
-
-      input[value="석굴암"]:checked ~ .imgbox img[alt="석굴암"] { display: block; }
-
-      input[value="남대문"]:checked ~ .imgbox img[alt="남대문"] { display: block;  }
-
-      input[value="독립기념관"]:checked ~ .imgbox img[alt="독립기념관"] { display: block; }
-
-      input[type="checkbox"]:checked ~ .view { opacity:1;}
-
-
-
-
-
+    * { margin:0; padding:0;} /* 모든 요소에 마진과 패딩을 0으로 설정. 스타일 초기화 */
+    #wrap { width:100%;} /* wrap: 브라우저의 전체 너비를 100%로 설정. */
+    h1 { text-align:center; background:#666; color:#fff; padding:30px 0;} 
+    /* h1: 제목 요소를 중앙 정렬하고, 배경색을 #666으로 설정하고, 텍스트 색상을 #fff로 설정하고, 패딩을 20px 0으로 설정. */
+    form { width:95%; margin:0 auto;} /* form: 폼 요소를 95%의 너비로 설정하고, 마진을 0으로 설정하고, 좌우 중앙 정렬. */
+    /* form: 폼 요소를 감싸는 컨테이너. 폼 요소는 사용자 입력을 받는 요소를 감싸는 컨테이너. */
+    label { display: block; background-color:yellowgreen; padding:10px 20px; color:#fff;
+      border-radius:10px;  margin:20px 0;}
+    /* label display: block; 블록 요소로 설정하고, 배경색을 yellowgreen으로 설정하고, 
+    패딩을 10px 20px으로 설정하고, 텍스트 색상을 #fff로 설정하고, 테두리 둥글기를 10px으로 설정하고, 
+    마진을 20px 0으로 설정. */
+    label:nth-of-type(2) { margin:20px 0;} /* label:nth-of-type(2): 두 번째 label 요소에 마진을 20px 0으로 설정. */
+    .view { transition:all 0.5s ease; opacity:0;} /* view: 뷰 요소를 0.5초 동안 부드럽게 투명도를 변경. */
+    span { padding:0 10px; font-size:14px;} /* span: 텍스트를 14px 크기로 설정하고, 패딩을 0 10px으로 설정. */
+    button { margin:10px 0; border:none; border-radius:8px; background-color:deepskyblue; color:#fff;
+      padding:5px 10px;} /* button: 버튼 요소를 10px 마진을 0으로 설정하고, 테두리를 없음으로 설정하고, 테두리 둥글기를 8px으로 설정하고, 배경색을 deepskyblue으로 설정하고, 텍스트 색상을 #fff로 설정하고, 패딩을 5px 10px으로 설정. */
+    .imgbox { width:500px; height:300px; padding:10px 0; position:relative; border-radius:20px; 
+      overflow:hidden;} /* imgbox: 이미지 박스 요소를 500px 너비로 설정하고, 300px 높이로 설정하고, 패딩을 10px 0으로 설정하고, 위치를 상대 위치로 설정하고, 테두리 둥글기를 20px으로 설정하고, 오버플로우를 숨김으로 설정. */
+    .imgbox img { width:100%; height:100%; position:absolute; top:0; left:0;}
+    /* imgbox img: 이미지 요소를 100% 너비로 설정하고, 100% 높이로 설정하고, 위치를 절대 위치로 설정하고, 상단을 0으로 설정하고, 좌측을 0으로 설정. */
+    .imgbox img:not(:first-child) { display:none;}
+    /* imgbox img:not(:first-child): 첫 번째 이미지 요소를 제외한 모든 이미지 요소를 숨김. */
+    input[type="radio"] { margin:10px 0;}
+    /* input[type="radio"]: 라디오 버튼 요소에 마진을 10px 0으로 설정. */
+    input[value="석굴암"]:checked ~ .imgbox img[alt="석굴암"] { display: block;}
+    /* input[value="석굴암"]:checked ~ .imgbox img[alt="석굴암"]: 석굴암 라디오 버튼이 선택되면, 석굴암 이미지를 표시. */
+    input[value="남대문"]:checked ~ .imgbox img[alt="남대문"] { display: block;}
+    /* input[value="남대문"]:checked ~ .imgbox img[alt="남대문"]: 남대문 라디오 버튼이 선택되면, 남대문 이미지를 표시. */
+    input[value="독립기념관"]:checked ~ .imgbox img[alt="독립기념관"] { display: block;}
+    /* input[value="독립기념관"]:checked ~ .imgbox img[alt="독립기념관"]: 독립기념관 라디오 버튼이 선택되면, 독립기념관 이미지를 표시. */
+    input[type="checkbox"]:checked ~ .view { opacity:1}
+    /* input[type="checkbox"]:checked ~ .view: 체크박스가 선택되면, 뷰 요소의 투명도를 1로 설정. */
     </style>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<!-- CSS 끝 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
 
-
-
   <body>
-
-    <div id="wrap">
-
+    <div id="wrap"><!-- wrap: 전체 영역을 감싸는 컨테이너 -->
       <h1>우리의 문화재</h1>
 
-      <form>
+      <form><!-- form: 폼 요소를 감싸는 컨테이너 -->
+        <label>선택을 시작하겠습니까?<!-- label: 라벨 요소를 감싸는 컨테이너 --></label>
 
-        <label>선택을 시작하겠습니까?</label>
+        <input type="checkbox" value="start" /> <!-- input: 입력 요소를 감싸는 컨테이너 -->
+        <span class="start">시작함</span> <!-- span: 텍스트를 감싸는 컨테이너 -->
 
-        <input type="checkbox" value="start">
+        <div class="view"><!-- view: 뷰 요소를 감싸는 컨테이너 -->
+          <label>원하는 문화재는?<!-- label: 라벨 요소를 감싸는 컨테이너 --></label>
 
-        <span class="start">시작함</span>
+          <input type="radio" name="mun" value="석굴암" checked /><span>석굴암</span><br> <!-- radio: 라디오 버튼 요소를 감싸는 컨테이너 -->
+          <input type="radio" name="mun" value="남대문" /><span>남대문</span><br> <!-- radio: 라디오 버튼 요소를 감싸는 컨테이너 -->
+          <input type="radio" name="mun" value="독립기념관" /><span>독립기념관</span><br> <!-- radio: 라디오 버튼 요소를 감싸는 컨테이너 -->
 
-        <div class="view">
+          <button type="button" onclick="alert('선택 완료');">선택 완료</button> <!-- button: 버튼 요소를 감싸는 컨테이너 -->
 
-          <label>원하는 문화재는?</label>
-
-          <input type="radio" name="mun" value="석굴암" checked><span>석굴암</span><br>
-
-          <input type="radio" name="mun" value="남대문"><span>남대문</span><br>
-
-          <input type="radio" name="mun" value="독립기념관"><span>독립기념관</span><br>
-
-          <button type="button" onclick="">선택 완료</button>
-
-          <div class="imgbox">
-
-            <img src="https://t1.daumcdn.net/cfile/blog/241C52405909F01C25" alt="석굴암">
-
-            <img src="https://cdn.crowdpic.net/list-thumb/thumb_l_FD7E7AA730130805E58AFC0BE99AF03F.jpg" alt="남대문">
-
-            <img src="http://www.jbnews.com/news/photo/202009/1307197_1102765_179.jpg" alt="독립기념관">
-
+          <div class="imgbox"><!-- imgbox: 이미지 박스 요소를 감싸는 컨테이너 -->
+            <img src="https://t1.daumcdn.net/cfile/blog/241C52405909F01C25" alt="석굴암" /> <!-- img: 이미지 요소를 감싸는 컨테이너 -->
+            <img src="https://cdn.crowdpic.net/list-thumb/thumb_l_FD7E7AA730130805E58AFC0BE99AF03F.jpg" alt="남대문" /> <!-- img: 이미지 요소를 감싸는 컨테이너 -->
+            <img src="http://www.jbnews.com/news/photo/202009/1307197_1102765_179.jpg" alt="독립기념관" /> <!-- img: 이미지 요소를 감싸는 컨테이너 -->
           </div>
-
         </div>
-
       </form>
-
     </div>
-
   </body>
-
-
-
 </html>
