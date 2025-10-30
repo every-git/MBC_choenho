@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>시멘틱구조</title>
+    <style>
+      /*
+        float: left; 왼쪽정렬
+        float: right; 오른쪽정렬
+        margin: 0 auto; 가로 중앙정렬
+
+        코드에서 float: left 하고 margin: 0 auto 는 함께 사용하지 못한다.
+        같이 사용하면 문제가 발생한다.
+
+        clear: both; 를 사용하면 떠 있는 요소를 초기화 한다.
+        float들의 속성 해제 역할을 함.
+
+        */
+      * {
+        margin: 0;
+        box-sizing: border-box;
+      }
+      header {
+        width: 500px;
+        height: 100px;
+        border: 3px solid gold;
+      }
+      .a {
+        width: 500px;
+        height: 100px;
+        border: 3px solid turquoise;
+        position: relative;
+      }
+      #slider{
+        width: 500px;
+        height: 100px;
+        border: 3px solid red;
+        position: absolute;
+      }
+      main {
+        width: 500px;
+        height: 100px;
+        border: 3px solid blue;
+      }
+      footer {
+        width: 500px;
+        height: 100px;
+        border: 3px solid greenyellow;
+      }
+    </style>
+  </head>
+  <body>
+      <header></header>
+      <div class="a">
+        <div id="slider"></div>
+      </div>
+      <main></main>
+      <footer></footer>
+  </body>
+</html>
