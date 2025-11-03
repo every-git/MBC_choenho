@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Jeep</title>
+    <meta charset="utf-8">
+    <style>
+      * {
+        margin: 0;
+        box-sizing: border-box;
+      }
+      ul,
+      ol,
+      li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        width: 1185px;
+        height: 160px;
+        margin: 0 auto;
+      }
+      #logo {
+        width: 170px;
+        height: 70px;
+        float: left;
+        margin: 20px 0 0 10px;
+      }
+      #login {
+        width: 295px;
+        height: 30px;
+        float: right;
+        margin: 20px 30px 0 0px;
+      }
+      #login ul {
+        font-size: 12px;
+        color: #666;
+      }
+      #login li {
+        float: left;
+        margin: 0 5px;
+      }
+      #login li a {
+        text-decoration: none;
+        color: #666;
+      }
+      nav {
+        width: 920px;
+        height: 40px;
+        float: right;
+        margin: 20px 0px 0 0px;
+      }
+      #nav_ul {
+        font-size: 19px;
+        font-weight: bold;
+      }
+      #nav_li {
+        float: left;
+        margin: 0 40px;
+      }
+      #nav_li a {
+        text-decoration: none;
+        color: #000;
+      }
+      #nav_li a:hover {
+        color: blue;
+      }
+      #slider {
+        width: 1475px;
+        height: 560px;
+        margin: 0 auto;
+      }
+      #slider img {
+        width: 100%;
+        height: 100%;
+      }
+      section {
+        width: 1280px;
+        height: 405px;
+        margin: 0 auto;
+      }
+      #news {
+        width: 345px;
+        height: 155px;
+        float: left;
+        margin: 30px 0 0 35px;
+      }
+      #news h3 {
+        font-size: 20px;
+        margin: 0 0 10px 0;
+      }
+      #news table {
+        font-size: 12px;
+      }
+      #news table a {
+        height: 25px;
+        text-decoration: none;
+        color: #000;
+      }
+      #news table a:hover {
+        color: blue;
+      }
+
+      #icon {
+        width: 445px;
+        height: 155px;
+        float: left;
+        margin: 30px 0 0 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #icon > .iconbox {
+        width: 75px;
+        height: 75px;
+        margin: 0 6px;
+      }
+      #icon > .iconbox > a > img {
+        width: 70px;
+        height: 50px;
+      }
+      #icon > .iconbox > span > a {
+        color: #666;
+        display: block; /* 블록 요소로 변경 : 줄바꿈 가능 */
+        width: 100%; /* 부모 요소의 100% 너비 사용 */
+        text-align: center; /* 가로 중앙 정렬 */
+      }
+      #icon > .iconbox > span > a:hover {
+        color: blue;
+      }
+      #brand {
+        width: 330px;
+        height: 155px;
+        float: left;
+        margin: 30px 0 0 35px;
+      }
+      #brand h3 {
+        font-size: 20px;
+        margin: 0 0 10px 0;
+      }
+      #brand p {
+        font-size: 12px;
+      }
+      #brand p a {
+        color: #666;
+        text-decoration: none;
+      }
+      #brand p a:hover {
+        color: blue;
+      }
+      #brand h4 {
+        font-size: 15px;
+        margin: 10px 0 0 0px;
+      }
+      #brand h4 a {
+        color: #333;
+        text-decoration: none;
+      }
+      #brand h4 a:hover {
+        color: blue;
+      }
+      #promotion {
+        width: 345px;
+        height: 150px;
+        float: left;
+        margin: 30px 0 0 35px;
+      }
+      #promotion h3 {
+        font-size: 20px;
+        margin: 0 0 10px 0;
+      }
+      #promotion p {
+        font-size: 12px;
+        float: left;
+        width: 200px;
+        height: 70px;
+      }
+      #promotion p a {
+        color: #666;
+        text-decoration: none;
+      }
+      #promotion p a:hover {
+        color: blue;
+      }
+      #promotion a img {
+        float: right;
+        width: 100px;
+        height: 100px;
+        margin: 0 0 0 10px;
+      }
+     
+      #camp {
+        width: 455px;
+        height: 150px;
+        float: left;
+        margin: 30px 0 0 35px;
+      }
+      #camp h3 {
+        font-size: 20px;
+        margin: 0 0 10px 0;
+      }
+      #camp p {
+        font-size: 12px;
+        float: left;
+        width: 200px;
+        height: 70px;
+      }
+      #camp p a {
+        color: #666;
+        text-decoration: none;
+      }
+      #camp p a:hover {
+        color: blue;
+      }
+      #camp a img {
+        float: right;
+        width: 100px;
+        height: 100px;
+        margin: 0 0 0 10px;
+      }
+      #store {
+        width: 330px;
+        height: 150px;
+        float: left;
+        margin: 30px 0 0 35px;
+      }
+      #store h3 {
+        font-size: 20px;
+        margin: 0 0 10px 0;
+      }
+      #store p {
+        font-size: 12px;
+        float: left;
+        width: 200px;
+        height: 70px;
+      }
+      #store p a {
+        color: #666;
+        text-decoration: none;
+      }
+      #store p a:hover {
+        color: blue;
+      }
+      #store a img {
+        float: right;
+        width: 100px;
+        height: 100px;
+        margin: 0 0 0 10px;
+      }
+      footer {
+        width: 100%;
+        height: 145px;
+        display: flex;
+        margin: 0 auto;
+      }
+      footer #box {
+        width: 1240px;
+        height: 130px;
+        float: center;
+        margin: 10px auto 0 auto;
+      }
+      #box_ul {
+        font-size: 12px;
+        color: #666;
+        float: left;
+        margin: 20px 0 0 40px;
+      }
+      #box_li {
+        float: left;
+        margin: 0 5px;
+      }
+      #box_li a {
+        text-decoration: none;
+        color: #666;
+      }
+      #box_li a:hover {
+        color: blue;
+      }
+      #box_p {
+        font-size: 12px;
+        color: #666;
+        float: left;
+        width: 700px;
+        height: 50px;
+        line-height: 150%;
+        margin: 10px 0 0 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div id="logo"><img src="img/logo_img.jpg" alt="로고" /></div>
+      <div id="login">
+        <ul id="login_ul">
+          <li id="login_li"><a id="login_a" href="#">로그인</a></li>
+          <li id="login_li">|</li>
+          <li id="login_li"><a id="login_a" href="#">회원가입</a></li>
+          <li id="login_li">|</li>
+          <li id="login_li"><a id="login_a" href="#">Q & A</a></li>
+          <li id="login_li">|</li>
+          <li id="login_li"><a id="login_a" href="#">LANGUAGE</a></li>
+        </ul>
+      </div>
+      <nav>
+        <ul id="nav_ul">
+            <li id="nav_li"><a id="nav_a" href="#">Model</a></li>
+            <li id="nav_li"><a id="nav_a" href="#">Driving</a></li>
+            <li id="nav_li"><a id="nav_a" href="#">performance</a></li>
+            <li id="nav_li"><a id="nav_a" href="#">Services</a></li>
+            <li id="nav_li"><a id="nav_a" href="#">Event</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div id="slider">
+        <img src="img/1.jpg" alt="슬라이더 이미지">
+    </div>
+    <section>
+      <div id="news">
+        <h3>NEWS</h3>
+        <table>
+          <tr>
+            <td><a href="#">FCA 코리아, '2017' FCA 서비스 스킬...</a></td>
+          </tr>
+          <tr>
+            <td><a href="#">지프, '랭글러 언리미티드 랭글러 JK 에디션...'</a></td>
+          </tr>
+          <tr>
+            <td><a href="#">가장 스릴 넘치는 '지프 드라이브 스루'가...</a></td>
+          </tr>
+        </table>
+      </div>
+      <div id="icon">
+        <div class="iconbox">
+            <a href="#"><img src="img/icon_img1.jpg" alt="카달로그"></a>
+            <span><a href="#">카달로그</a></span>
+        </div>
+        <div class="iconbox">
+            <a href="#"><img src="img/icon_img2.jpg" alt="견적"></a>
+            <span><a href="#">견적</a></span>
+        </div>
+        <div class="iconbox">
+            <a href="#"><img src="img/icon_img3.jpg" alt="1:1상담"></a>
+            <span><a href="#">1:1상담</a></span>
+        </div>
+        <div class="iconbox">
+            <a href="#"><img src="img/icon_img4.jpg" alt="1:1상담"></a>
+            <span><a href="#">1:1상담</a></span>
+        </div>
+        <div class="iconbox">
+            <a href="#"><img src="img/icon_img5.jpg" alt="1:1상담"></a>
+            <span><a href="#">1:1상담</a></span>
+        </div>
+      </div>
+      <div id="brand">
+        <h3>Brand Stroy</h3>
+        <p><a href="#">모험은 모든 Jeep®가 보유한 DNA의 일부입니다. 인류가 호기심에 이끌려 천지 끝까지 탐험을 멈추지 않는 한 Jeep®는 계속해서 인류가 그 한계를 뛰어 넘도록 영감을 줄 것입니다.</a></p>
+        <h4><a href="#">마이크 맨리 Jeep 브랜드 대표이사 및 CEO</a></h4>
+      </div>
+      <div id="promotion">
+        <h3>이달의 프로모션</h3>
+        <p><a href="#">JEEP에서 마련한 최상의 구매 혜택을 소개해드립니다. 내게 딱 맞는 조건대로 부담 없이 선택하세요.</a></p>
+        <a href="#"><img src="img/promotion_img.jpg" alt="프로모션"></a>
+      </div>
+      <div id="camp">
+        <h3>JEECAMP</h3>
+        <p><a href="#">JEEP를 구매해주신 고객분들을 초대하여 서로의 정보를 교환 하고 친목을 다질수 있는 캠프 입니다.</a></p>
+        <a href="#"><img src="img/camp_img.jpg" alt="캠프"></a>
+      </div>
+      <div id="store">
+        <h3>매장및 서비스센터</h3>
+        <p><a href="#">JEEP의 매장과 서비스센터를 안내해 드립니다.</a></p>
+        <a href="#"><img src="img/ser_img.jpg" alt="매장"></a>
+      </div>
+    </section>
+    <footer>
+      <div id="box">
+        <ul id="box_ul">
+            <li id="box_li"><a id="box_a" href="#">HOME</a></li>
+            <li id="box_li">|</li>
+            <li id="box_li"><a id="box_a" href="#">BUSINESS PRACTICE OFFICE</a></li>
+            <li id="box_li">|</li>
+            <li id="box_li"><a id="box_a" href="#">COPYRIGHT</a></li>
+            <li id="box_li">|</li>
+            <li id="box_li"><a id="box_a" href="#">CONTACT US</a></li>
+            <li id="box_li">|</li>
+            <li id="box_li"><a id="box_a" href="#">SITEMAP</a></li>
+            <li id="box_li">|</li>
+            <li id="box_li"><a id="box_a" href="#">개인정보 처리방침</a></li>
+            <li id="box_li">|</li>
+            <br><br>
+            <li id="box_li"><a id="box_a" href="#">Fiat Chrysler Automobiles (FCA)</a></li>
+            <li id="box_li">|</li>
+            <li id="box_li"><a id="box_a" href="#">Chrysler</a></li>
+            <li id="box_li">|</li>
+            <li id="box_li"><a id="box_a" href="#">FIAT®</a></li>
+            <li id="box_li">|</li>
+        </ul>
+        <p id="box_p">ⓒ 2016 Fiat Chrysler Automobiles (FCA). All Rights Reserved.<br>
+          Chrysler, Jeep 및 FIAT 로고는 Fiat Chrysler Automobiles (FCA)의 등록 상표입니다.</p>
+      </div>
+    </footer>
+  </body>
+</html>
