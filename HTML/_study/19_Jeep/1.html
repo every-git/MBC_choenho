@@ -24,7 +24,12 @@
         width: 170px;
         height: 70px;
         float: left;
-        margin: 20px 0 0 10px;
+        margin: 70px 0 0 10px;
+      }
+      #logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
       #login {
         width: 295px;
@@ -48,39 +53,86 @@
         width: 920px;
         height: 40px;
         float: right;
-        margin: 20px 0px 0 0px;
+        margin: 50px 0px 0 0px;
       }
-      #nav_ul {
+      nav ul {
         font-size: 19px;
         font-weight: bold;
       }
-      #nav_li {
+      nav li {
         float: left;
         margin: 0 40px;
       }
-      #nav_li a {
+      nav li a {
         text-decoration: none;
         color: #000;
       }
-      #nav_li a:hover {
+      nav li a:hover {
         color: blue;
       }
       #slider {
         width: 1475px;
         height: 560px;
         margin: 0 auto;
+        position: relative;
       }
       #slider img {
         width: 100%;
         height: 100%;
+        object-fit: cover;
+      }
+      .slider-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50px;
+        height: 50px;
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 80px;
+        font-weight: 100;
+        cursor: pointer;
+        z-index: 10;
+        transition: opacity 0.3s;
+      }
+      .slider-arrow:hover {
+        opacity: 0.7;
+      }
+      .slider-arrow.left {
+        left: 20px;
+      }
+      .slider-arrow.right {
+        right: 20px;
+      }
+      .slider-dots {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 10;
+      }
+      .slider-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        border: none;
+        cursor: pointer;
+      }
+      .slider-dot.active {
+        background: white;
       }
       section {
         width: 1280px;
         height: 405px;
         margin: 0 auto;
+        overflow: hidden;
       }
       #news {
-        width: 345px;
+        width: 250px;
         height: 155px;
         float: left;
         margin: 30px 0 0 35px;
@@ -88,12 +140,26 @@
       #news h3 {
         font-size: 20px;
         margin: 0 0 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      #news h3::after {
+        content: "+";
+        font-size: 18px;
+        color: #666;
       }
       #news table {
         font-size: 12px;
+        width: 100%;
+      }
+      #news table tr {
+        height: 25px;
       }
       #news table a {
+        display: block;
         height: 25px;
+        line-height: 25px;
         text-decoration: none;
         color: #000;
       }
@@ -102,7 +168,7 @@
       }
 
       #icon {
-        width: 445px;
+        width: 540px;
         height: 155px;
         float: left;
         margin: 30px 0 0 35px;
@@ -118,12 +184,15 @@
       #icon > .iconbox > a > img {
         width: 70px;
         height: 50px;
+        object-fit: contain;
+        display: block;
       }
       #icon > .iconbox > span > a {
         color: #666;
-        display: block; /* 블록 요소로 변경 : 줄바꿈 가능 */
-        width: 100%; /* 부모 요소의 100% 너비 사용 */
-        text-align: center; /* 가로 중앙 정렬 */
+        display: block;
+        width: 100%;
+        text-align: center;
+        text-decoration: none;
       }
       #icon > .iconbox > span > a:hover {
         color: blue;
@@ -140,6 +209,7 @@
       }
       #brand p {
         font-size: 12px;
+        line-height: 1.5;
       }
       #brand p a {
         color: #666;
@@ -159,131 +229,123 @@
       #brand h4 a:hover {
         color: blue;
       }
-      #promotion {
-        width: 345px;
-        height: 150px;
-        float: left;
-        margin: 30px 0 0 35px;
-      }
-      #promotion h3 {
-        font-size: 20px;
-        margin: 0 0 10px 0;
-      }
-      #promotion p {
-        font-size: 12px;
-        float: left;
-        width: 200px;
-        height: 70px;
-      }
-      #promotion p a {
-        color: #666;
-        text-decoration: none;
-      }
-      #promotion p a:hover {
-        color: blue;
-      }
-      #promotion a img {
-        float: right;
-        width: 100px;
-        height: 100px;
-        margin: 0 0 0 10px;
-      }
-     
-      #camp {
-        width: 455px;
-        height: 150px;
-        float: left;
-        margin: 30px 0 0 35px;
-      }
-      #camp h3 {
-        font-size: 20px;
-        margin: 0 0 10px 0;
-      }
-      #camp p {
-        font-size: 12px;
-        float: left;
-        width: 200px;
-        height: 70px;
-      }
-      #camp p a {
-        color: #666;
-        text-decoration: none;
-      }
-      #camp p a:hover {
-        color: blue;
-      }
-      #camp a img {
-        float: right;
-        width: 100px;
-        height: 100px;
-        margin: 0 0 0 10px;
-      }
+      #promotion,
+      #camp,
       #store {
-        width: 330px;
         height: 150px;
         float: left;
         margin: 30px 0 0 35px;
+        overflow: hidden;
+        position: relative;
       }
+      #promotion h3,
+      #camp h3,
       #store h3 {
         font-size: 20px;
         margin: 0 0 10px 0;
+        height: 30px;
+        line-height: 30px;
+        position: relative;
+        z-index: 1;
       }
+      #promotion p,
+      #camp p,
       #store p {
         font-size: 12px;
         float: left;
         width: 200px;
         height: 70px;
+        line-height: 1.5;
+        margin: 0;
+        position: relative;
+        z-index: 1;
       }
+      #promotion p a,
+      #camp p a,
       #store p a {
         color: #666;
         text-decoration: none;
       }
+      #promotion p a:hover,
+      #camp p a:hover,
       #store p a:hover {
         color: blue;
       }
+      #promotion a img,
+      #camp a img,
       #store a img {
-        float: right;
-        width: 100px;
+        position: absolute;
+        right: 0;
+        top: 0;
         height: 100px;
-        margin: 0 0 0 10px;
+        object-fit: cover;
+      }
+      #promotion a img {
+        width: 130px;
+      }
+      #camp a img {
+        width: 240px;
+      }
+      #store a img {
+        width: 120px;
+      }
+      #promotion {
+        width: 345px;
+      }
+      #camp {
+        width: 455px;
+      }
+      #store {
+        width: 330px;
       }
       footer {
         width: 100%;
-        height: 145px;
-        display: flex;
-        margin: 0 auto;
+        padding: 12px 0;
+        margin: 0;
       }
-      footer #box {
+      .footer-box {
         width: 1240px;
-        height: 130px;
-        float: center;
-        margin: 10px auto 0 auto;
+        margin: 0 auto;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        flex-wrap: wrap;
       }
-      #box_ul {
+      .footer-links {
         font-size: 12px;
         color: #666;
-        float: left;
-        margin: 20px 0 0 40px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 12px;
+        margin: 4px 0 0 0;
+        padding: 0;
       }
-      #box_li {
-        float: left;
-        margin: 0 5px;
+      .footer-links li {
+        list-style: none;
       }
-      #box_li a {
+      .footer-links li + li::before {
+        content: "|";
+        margin-right: 6px;
+        color: #666;
+      }
+      .footer-links--sub {
+        flex-basis: 100%;
+        margin-top: 12px;
+      }
+      .footer-links a {
         text-decoration: none;
         color: #666;
       }
-      #box_li a:hover {
+      .footer-links a:hover {
         color: blue;
       }
-      #box_p {
+      .footer-copy {
+        flex-basis: 100%;
+        margin-top: 6px;
         font-size: 12px;
         color: #666;
-        float: left;
-        width: 700px;
-        height: 50px;
-        line-height: 150%;
-        margin: 10px 0 0 40px;
+        line-height: 1.3;
+        max-width: 700px;
       }
     </style>
   </head>
@@ -291,28 +353,35 @@
     <header>
       <div id="logo"><img src="img/logo_img.jpg" alt="로고" /></div>
       <div id="login">
-        <ul id="login_ul">
-          <li id="login_li"><a id="login_a" href="#">로그인</a></li>
-          <li id="login_li">|</li>
-          <li id="login_li"><a id="login_a" href="#">회원가입</a></li>
-          <li id="login_li">|</li>
-          <li id="login_li"><a id="login_a" href="#">Q & A</a></li>
-          <li id="login_li">|</li>
-          <li id="login_li"><a id="login_a" href="#">LANGUAGE</a></li>
+        <ul>
+          <li><a href="#">로그인</a></li>
+          <li>|</li>
+          <li><a href="#">회원가입</a></li>
+          <li>|</li>
+          <li><a href="#">Q & A</a></li>
+          <li>|</li>
+          <li><a href="#">LANGUAGE</a></li>
         </ul>
       </div>
       <nav>
-        <ul id="nav_ul">
-            <li id="nav_li"><a id="nav_a" href="#">Model</a></li>
-            <li id="nav_li"><a id="nav_a" href="#">Driving</a></li>
-            <li id="nav_li"><a id="nav_a" href="#">performance</a></li>
-            <li id="nav_li"><a id="nav_a" href="#">Services</a></li>
-            <li id="nav_li"><a id="nav_a" href="#">Event</a></li>
+        <ul>
+            <li><a href="#">Model</a></li>
+            <li><a href="#">Purchase Inquiry</a></li>
+            <li><a href="#">Driving performance</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Event</a></li>
         </ul>
       </nav>
     </header>
     <div id="slider">
         <img src="img/1.jpg" alt="슬라이더 이미지">
+        <button class="slider-arrow left">‹</button>
+        <button class="slider-arrow right">›</button>
+        <div class="slider-dots">
+            <button class="slider-dot active"></button>
+            <button class="slider-dot"></button>
+            <button class="slider-dot"></button>
+        </div>
     </div>
     <section>
       <div id="news">
@@ -343,12 +412,12 @@
             <span><a href="#">1:1상담</a></span>
         </div>
         <div class="iconbox">
-            <a href="#"><img src="img/icon_img4.jpg" alt="1:1상담"></a>
-            <span><a href="#">1:1상담</a></span>
+            <a href="#"><img src="img/icon_img4.jpg" alt="시승예약"></a>
+            <span><a href="#">시승예약</a></span>
         </div>
         <div class="iconbox">
-            <a href="#"><img src="img/icon_img5.jpg" alt="1:1상담"></a>
-            <span><a href="#">1:1상담</a></span>
+            <a href="#"><img src="img/icon_img5.jpg" alt="A/S"></a>
+            <span><a href="#">A/S</a></span>
         </div>
       </div>
       <div id="brand">
@@ -373,29 +442,22 @@
       </div>
     </section>
     <footer>
-      <div id="box">
-        <ul id="box_ul">
-            <li id="box_li"><a id="box_a" href="#">HOME</a></li>
-            <li id="box_li">|</li>
-            <li id="box_li"><a id="box_a" href="#">BUSINESS PRACTICE OFFICE</a></li>
-            <li id="box_li">|</li>
-            <li id="box_li"><a id="box_a" href="#">COPYRIGHT</a></li>
-            <li id="box_li">|</li>
-            <li id="box_li"><a id="box_a" href="#">CONTACT US</a></li>
-            <li id="box_li">|</li>
-            <li id="box_li"><a id="box_a" href="#">SITEMAP</a></li>
-            <li id="box_li">|</li>
-            <li id="box_li"><a id="box_a" href="#">개인정보 처리방침</a></li>
-            <li id="box_li">|</li>
-            <br><br>
-            <li id="box_li"><a id="box_a" href="#">Fiat Chrysler Automobiles (FCA)</a></li>
-            <li id="box_li">|</li>
-            <li id="box_li"><a id="box_a" href="#">Chrysler</a></li>
-            <li id="box_li">|</li>
-            <li id="box_li"><a id="box_a" href="#">FIAT®</a></li>
-            <li id="box_li">|</li>
+      <div class="footer-box">
+        <ul class="footer-links">
+          <li><a href="#">HOME</a></li>
+          <li><a href="#">BUSINESS PRACTICE OFFICE</a></li>
+          <li><a href="#">COPYRIGHT</a></li>
+          <li><a href="#">CONTACT US</a></li>
+          <li><a href="#">SITEMAP</a></li>
+          <li><a href="#">개인정보 처리방침</a></li>
         </ul>
-        <p id="box_p">ⓒ 2016 Fiat Chrysler Automobiles (FCA). All Rights Reserved.<br>
+        <ul class="footer-links footer-links--sub">
+          <li><a href="#">Fiat Chrysler Automobiles (FCA)</a></li>
+          <li><a href="#">Chrysler</a></li>
+          <li><a href="#">FIAT®</a></li>
+        </ul>
+
+        <p class="footer-copy">ⓒ 2016 Fiat Chrysler Automobiles (FCA). All Rights Reserved.<br>
           Chrysler, Jeep 및 FIAT 로고는 Fiat Chrysler Automobiles (FCA)의 등록 상표입니다.</p>
       </div>
     </footer>
