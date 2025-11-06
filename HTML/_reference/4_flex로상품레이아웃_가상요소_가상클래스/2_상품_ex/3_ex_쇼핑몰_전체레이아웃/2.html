@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+
+​
+
+<html>
+
+​
+
+  <head>
+
+​
+
+    <title>Page Title</title>
+
+​
+
+    <style>
+
+​
+
+      /*reset*/
+
+​
+
+      * {margin:0; box-sizing:border-box;}
+
+​
+
+      ul,ol,li {list-style:none; margin:0; padding:0;}
+
+​
+
+​
+
+​
+
+​
+
+      /*header*/
+
+      header {width:1185px; height:160px;  margin:0 auto;}
+
+​
+
+​
+
+      /*로고*/
+
+​
+
+      #logo {width:220px; height:100px; float:left; margin:20px 0 0 0px;}
+
+​
+
+      #logo > a > img {width:100%; height:100px;}
+
+​
+
+​
+
+​
+
+      #login {width:300px; height:30px;  float:right; margin:30px 20px 0 0px; background-color:gold;}
+
+​
+
+​
+
+​
+
+      /*로그인*/
+
+​
+
+      #login > ul > li  {float:left; color:#666; font-size:11px;}
+
+​
+
+      #login > ul > li > a { color:#666; margin:0 15px; text-decoration:none;}
+
+​
+
+​
+
+​
+
+      /*네비*/
+
+​
+
+      nav {width:920px; height:40px;  float:left; margin:20px 0 0 40px; background-color:pink;}
+
+​
+
+      nav > ul > li > a {text-decoration:none; color:#000; font-weight:bold; float:left; margin:0 30px; font-size:19px;}
+
+​
+
+      nav > ul > li > a:hover {color:green;}
+
+​
+
+​
+
+​
+
+      /*슬라이더*/
+
+      #slider {width:1475px; height:560px; background-color:tomato; margin:0 auto;}
+
+​
+
+      #slider > img {width:100%; height:100%;}
+
+​
+
+​
+
+​
+
+      section {width:1280px; height:1500px; background-color:skyblue; margin:0 auto;}
+
+​
+
+​
+
+​
+
+​
+
+      /*상품*/
+
+      #product { width:100%; height:700px; background-color:gold; float:left; margin:30px 0px; display:flex; flex-wrap:wrap; justify-content:center; align-content:center;}
+
+​
+
+      #product > h3 {width:100%; font-size:20px; color:green; text-align:center;}
+
+      #product > p {width:100%; font-size:20px; color:#000; text-align:center;}
+
+​
+
+      /*상품 박스 8개*/
+
+      #product > .productbox  {width:270px; height:270px; background-color:red; margin:10px;}
+
+​
+
+      /*세일*/
+
+      #sale { width:100%; height:600px; background-color:tomato;  float:left; margin:20px 0px; display:flex; flex-wrap:wrap; justify-content:center; align-content:center;}
+
+​
+
+      #sale > h3 {width:100%; font-size:20px; color:red; text-align:center;}
+
+      #sale > p {width:100%; font-size:20px; color:#000; text-align:center;}
+
+​
+
+      /*세일 박스 10개*/
+
+      #sale > .salebox  {width:200px; height:200px; background-color:blue;  margin:10px;}
+
+​
+
+​
+
+​
+
+      /*footer*/
+
+      footer {width:100%; height:145px; background-color:#eee; margin:0 auto; border-top:2px solid #666;}
+
+​
+
+      #box {width:1240px; height:130px;  margin:0 auto;}
+
+​
+
+      #box > ul {width:750px; height:70px; float:left; margin:10px 0 0 10px; font-size:12px;}
+
+​
+
+      #box > ul > li {float:left; margin:5px 10px; color:#666; }
+
+​
+
+      #box > ul > li > a {text-decoration:none; color:#666;  }
+
+​
+
+      #box > p { margin:10px; width:100%;  height:40px; display:inline-block;  font-size:12px;}
+
+​
+
+    </style>
+
+​
+
+​
+
+​
+
+  </head>
+
+​
+
+  <body>
+
+​
+
+​
+
+    <!--헤더-->
+
+    <header>
+
+​
+
+      <div id="logo">
+
+​
+
+        <a href="#"> 
+
+​
+
+          <img src="https://blog.kakaocdn.net/dn/6ui8u/btqDtzRrCzg/ZM8q87L5frjEl0za6UnIk1/img.jpg" alt="로고이미지">  </a>
+
+​
+
+      </div>
+
+​
+
+​
+
+​
+
+      <div id="login">
+
+​
+
+        <ul>
+
+​
+
+          <li><a href="#">로그인</a></li>
+
+​
+
+          <li>|</li>
+
+​
+
+          <li><a href="#">회원가입 </a></li>
+
+​
+
+          <li>|</li>
+
+​
+
+          <li><a href="#"> Q & A </a></li>
+
+​
+
+          <li>|</li>
+
+​
+
+          <li><a href="#">LANGUAGE</a></li>
+
+​
+
+        </ul>
+
+​
+
+      </div>
+
+​
+
+​
+
+​
+
+      <nav>
+
+​
+
+        <ul>
+
+​
+
+          <li><a href="#">상품</a></li>
+
+​
+
+          <li><a href="#">베스트</a> </li>
+
+​
+
+          <li><a href="#">특가할인 </a></li>
+
+​
+
+          <li><a href="#">이벤트</a></li>
+
+​
+
+          <li><a href="#">REVIEW</a></li>
+
+​
+
+          <li><a href="#">쿠폰/해택</a></li>
+
+​
+
+        </ul>
+
+​
+
+​
+
+​
+
+      </nav>
+
+​
+
+    </header>
+
+​
+
+    <!--헤더 끝-->
+
+​
+
+    <!--슬라이더 시작-->
+
+    <div id="slider">
+
+​
+
+      <img src="https://image11.coupangcdn.com/image/cmg/oms/banner/a13bdfb9-abe6-4db3-879d-68377709c2ea_1280x423.jpg" alt="지프차">
+
+​
+
+    </div>
+
+​
+
+    <!--슬라이더 끝-->
+
+​
+
+    <!--메인 시작-->
+
+​
+
+    <section>
+
+      <!--상품 시작 -->
+
+      <div id="product">
+
+        <h3>이상품 어때요?</h3>
+
+        <p>오늘의 상품입니다.</p>
+
+​
+
+        <div class="productbox">1</div>
+
+        <div class="productbox">2</div>
+
+        <div class="productbox">3</div>
+
+        <div class="productbox">4</div>
+
+        <div class="productbox">5</div>
+
+        <div class="productbox">6</div>
+
+        <div class="productbox">7</div>
+
+        <div class="productbox">8</div>
+
+​
+
+      </div>
+
+      <!--상품 끝 -->
+
+​
+
+​
+
+​
+
+      <!--sale 상품시작 -->
+
+​
+
+      <div id="sale">
+
+​
+
+        <h3>지금 뜨고 있는 맞춤 베스트</h3>
+
+        <p>고객님을 위한 맞춤 Pick</p>
+
+​
+
+        <div class="salebox">1</div>
+
+        <div class="salebox">2</div>
+
+        <div class="salebox">3</div>
+
+        <div class="salebox">4</div>
+
+        <div class="salebox">5</div>
+
+        <div class="salebox">6</div>
+
+        <div class="salebox">7</div>
+
+        <div class="salebox">8</div> 
+
+        <div class="salebox">9</div>
+
+        <div class="salebox">10</div>
+
+      </div>
+
+​
+
+      <!--sale 상품끝 -->
+
+    </section>
+
+​
+
+​
+
+    <!--메인 끝 -->
+
+​
+
+​
+
+    <!--footer 시작 -->
+
+    <footer>
+
+​
+
+      <div id="box">
+
+​
+
+        <ul>
+
+​
+
+          <li><a href="#">HOME</a></li>
+
+​
+
+          <li>|</li>
+
+​
+
+          <li><a href="#">BUSINESS PRACTICE OFFICE</a></li>
+
+​
+
+          <li>|</li>
+
+​
+
+          <li><a href="#">COPYRIGHT</a></li>
+
+​
+
+          <li>|</li>
+
+​
+
+          <li><a href="#">CONTACT US</a></li>
+
+​
+
+          <li>|</li>
+
+​
+
+          <li><a href="#">SITEMAP</a></li>
+
+​
+
+          <li>|</li>
+
+​
+
+          <li><a href="#">개인정보 처리방침</a></li>
+
+​
+
+          <li>|</li>
+
+​
+
+          <li><a href="#">Fiat Chrysler Automobiles (FCA)</a></li>
+
+​
+
+          <li>|</li>
+
+​
+
+          <li><a href="#">Chrysler</a></li>
+
+​
+
+          <li>|</li>
+
+​
+
+          <li><a href="#">FIAT® </a></li>
+
+​
+
+        </ul>
+
+​
+
+​
+
+​
+
+        <p>
+
+​
+
+          ⓒ 2016 Fiat Chrysler Automobiles (FCA). All Rights Reserved.<br>
+
+​
+
+          Chrysler, Jeep 및 FIAT 로고는 Fiat Chrysler Automobiles (FCA)의 등록 상표입니다.
+
+​
+
+        </p>
+
+​
+
+​
+
+      </div>
+
+​
+
+    </footer>
+
+    <!--footer 끝 -->
+
+  </body>
+
+​
+
+</html>

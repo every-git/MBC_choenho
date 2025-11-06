@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="utf-8">
+    <title>시맨틱 태그를 활용한 HTML 구조</title>
+  </head>
+
+  <body>
+
+    <!-- 
+
+  웹표준으로 잘짜여진 html 구조의 예
+
+  불필요한 div 제거
+  시맨틱 태그 사용: 구조를 명확히 표현
+  HTML 구조 간결화: 태그 계층을 줄여서 읽기 쉽고 관리하기 쉽게 만든다. 
+
+  -->
+    <header>
+      <h1>사이트 제목</h1>
+      <nav class="gnb">
+        글로벌 네비게이션 링크
+      </nav>
+    </header>
+
+    <main>
+      <nav class="lnb">
+        로컬 네비게이션 링크
+      </nav>
+      <article>
+        <h2>페이지 제목</h2>
+        <section>
+          <h3>섹션 제목</h3>
+          <p>섹션 본문</p>
+        </section>
+        <section>
+          <h3>섹션 제목</h3>
+          <p>섹션 본문</p>
+        </section>
+      </article>
+      <aside>
+        <p>부가 콘텐츠</p>
+      </aside>
+    </main>
+
+    <footer>
+      <p>저작권, 주소, 연락처 등</p>
+    </footer>
+  </body>
+
+</html>

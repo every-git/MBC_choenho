@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page Title</title>
+    <style>
+      /*reset*/
+      * {margin:0; box-sizing:border-box;}
+      a {text-decoration:none; color:#000;}
+      #product {width:1000px; height:800px; margin:0 auto; border:2px solid #eee;}
+      #product > h3 {font-size:20px; color:green; text-align:center; line-height:50px; letter-spacing:10px;}
+      #product > p {font-size:17px; color:#000; text-align:center; line-height:30px;}
+      #product > .box {width:200px; height:300px;  float:left; margin:20px 15px; border:1px solid #ddd; border-radius:20px; overflow:hidden; padding:5px; text-align:center;}
+      #product > .box:hover {box-shadow:4px 4px 4px #ddd;} 
+      #product > .box > a > img {width:100%; height:200px; border-radius:20px;}
+      #product > .box > h4 > a {font-size:13px;}
+      #product > .box > h4 > a:hover {color:green;} 
+      #product > .box > span > a {font-size:12px; display:block;}
+      #product > .box > span::after {content:"sale!"; color:white; font-size:11px; background-color:tomato; padding:2px;}
+
+
+      #hit {width:1000px; height:1100px; margin:50px auto 0; background-color:#eee; border:2px solid #eee;}
+      #hit > h3 {font-size:20px; color:green; text-align:center; line-height:50px; letter-spacing:10px;}
+      #hit > p {font-size:17px; color:#000; text-align:center; line-height:30px;}
+      #hit > .box {width:300px; height:300px; background-color:white; float:left; margin:20px 15px; box-shadow:4px 4px 4px #ddd; padding:10px;}
+      #hit > .box  > a > .imgbox {width:100%; height:200px;   overflow:hidden;  }
+      #hit > .box  > a > .imgbox > img {width:100%; height:200px; transition:0.3s;}
+      #hit > .box  > a > .imgbox > img:hover {transform: scale(1.2);}
+      #hit > .box > a > img:hover {}
+      #hit > .box > h4 > a {font-size:15px;}
+      #hit > .box > span > a {font-size:12px; display:block;}
+      button {border:0; margin:20px auto; background-color:#93bf85; color:white;}
+    </style>
+  </head>
+  <body>
+    <!-- 신상품-->
+    <div id="product">
+      <h3>오늘의 상품</h3>
+      <p>새로운 상품을 만나 보세요.</p>
+
+
+      <div class="box">
+        <a href="#">
+          <img src="https://thumbnail8.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/2021/04/15/10/4/0252d2ea-5cf0-47dd-9998-d423733b7b21.jpg" alt="수박"></a>
+        <h4><a href="#">당도선별 수박, 5kg미만, 1개</a></h4>
+        <span><a href="#">23,000원</a></span>
+      </div>
+
+      <div class="box">
+        <a href="#">
+          <img src="https://thumbnail10.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/195c/bedaef4cfe7b94f34301e93d5f24db0a850b6abdfb8515ab4dfdf831af5e.jpg" alt="수박"></a>
+        <h4><a href="#">당도선별 수박, 5kg미만, 1개</a></h4>
+        <span><a href="#">23,000원</a></span>
+
+      </div>
+
+
+      <div class="box">
+
+        <a href="#">
+          <img src="https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/eafc/6c3b3e9a43f867a65e4a5af4f301907c207a1c1411b281f527668c31e97f.jpg" alt="수박"></a>
+        <h4><a href="#">당도선별 수박, 5kg미만, 1개</a></h4>
+        <span><a href="#">23,000원</a></span>
+      </div>
+
+
+      <div class="box">
+
+        <a href="#">
+          <img src="https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/efe1/096904eed4fae93c7a3bae29b5109a14e16d65a02f6b36ac74ee33a4ca56.jpg" alt="수박"></a>
+        <h4><a href="#">당도선별 수박, 5kg미만, 1개</a></h4>
+        <span><a href="#">23,000원</a></span>
+      </div>
+
+
+      <div class="box">
+        <a href="#">
+          <img src="https://thumbnail8.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/2021/04/15/10/4/0252d2ea-5cf0-47dd-9998-d423733b7b21.jpg" alt="수박"></a>
+        <h4><a href="#">당도선별 수박, 5kg미만, 1개</a></h4>
+        <span><a href="#">23,000원</a></span>
+      </div>
+
+      <div class="box">
+        <a href="#">
+          <img src="https://thumbnail10.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/195c/bedaef4cfe7b94f34301e93d5f24db0a850b6abdfb8515ab4dfdf831af5e.jpg" alt="수박"></a>
+        <h4><a href="#">당도선별 수박, 5kg미만, 1개</a></h4>
+        <span><a href="#">23,000원</a></span>
+
+      </div>
+
+
+      <div class="box">
+
+        <a href="#">
+          <img src="https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/eafc/6c3b3e9a43f867a65e4a5af4f301907c207a1c1411b281f527668c31e97f.jpg" alt="수박"></a>
+        <h4><a href="#">당도선별 수박, 5kg미만, 1개</a></h4>
+        <span><a href="#">23,000원</a></span>
+      </div>
+
+
+      <div class="box">
+
+        <a href="#">
+          <img src="https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/efe1/096904eed4fae93c7a3bae29b5109a14e16d65a02f6b36ac74ee33a4ca56.jpg" alt="수박"></a>
+        <h4><a href="#">당도선별 수박, 5kg미만, 1개</a></h4>
+        <span><a href="#">23,000원</a></span>
+      </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+    <!--히트 상품-->
+
+    <div id="hit">
+      <h3>오늘의 상품</h3>
+      <p>새로운 상품을 만나 보세요.</p>
+
+
+      <div class="box">
+        <a href="#">
+          <div class="imgbox">
+            <img src="https://thumbnail8.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/2021/04/15/10/4/0252d2ea-5cf0-47dd-9998-d423733b7b21.jpg" alt="수박">
+          </div>
+        </a>
+        <h4><a href="#">당도선별 수박, 5kg미만, 1개</a></h4>
+        <span><a href="#">23,000원</a></span>
+        <button>장바구니에 담기</button>
+      </div>
+
+      <div class="box">
+        <a href="#">
+          <div class="imgbox">
+            <img src="https://thumbnail10.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/195c/bedaef4cfe7b94f34301e93d5f24db0a850b6abdfb8515ab4dfdf831af5e.jpg" alt="수박"></div>
+        </a>
+
+        <h4><a href="#">당도선별 수박, 5kg미만, 1개</a></h4>
+        <span><a href="#">23,000원</a></span>
+        <button>장바구니에 담기</button>
+
+      </div>
+
+
+      <div class="box">
+
+        <a href="#">
+          <div class="imgbox">
+            <img src="https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/eafc/6c3b3e9a43f867a65e4a5af4f301907c207a1c1411b281f527668c31e97f.jpg" alt="수박"></div></a>
+        <h4><a href="#">당도선별 수박, 5kg미만, 1개</a></h4>
+        <span><a href="#">23,000원</a></span>
+      </div>
+
+
+      <div class="box">
+
+        <a href="#">
+          <div class="imgbox">
+            <img src="https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/efe1/096904eed4fae93c7a3bae29b5109a14e16d65a02f6b36ac74ee33a4ca56.jpg" alt="수박"></div></a>
+        <h4><a href="#">당도선별 수박, 5kg미만, 1개</a></h4>
+        <span><a href="#">23,000원</a></span>
+        <button>장바구니에 담기</button>
+      </div>
+
+
+      <div class="box">
+        <a href="#">
+          <div class="imgbox">
+            <img src="https://thumbnail8.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/2021/04/15/10/4/0252d2ea-5cf0-47dd-9998-d423733b7b21.jpg" alt="수박"></div></a>
+        <h4><a href="#">당도선별 수박, 5kg미만, 1개</a></h4>
+        <span><a href="#">23,000원</a></span>
+        <button>장바구니에 담기</button>
+      </div>
+
+      <div class="box">
+        <a href="#">
+          <div class="imgbox">
+            <img src="https://thumbnail10.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/195c/bedaef4cfe7b94f34301e93d5f24db0a850b6abdfb8515ab4dfdf831af5e.jpg" alt="수박"></div></a>
+        <h4><a href="#">당도선별 수박, 5kg미만, 1개</a></h4>
+        <span><a href="#">23,000원</a></span>
+        <button>장바구니에 담기</button>
+
+      </div>
+
+
+      <div class="box">
+
+        <a href="#">
+          <div class="imgbox">
+            <img src="https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/eafc/6c3b3e9a43f867a65e4a5af4f301907c207a1c1411b281f527668c31e97f.jpg" alt="수박"></div></a>
+        <h4><a href="#">당도선별 수박, 5kg미만, 1개</a></h4>
+        <span><a href="#">23,000원</a></span>
+      </div>
+
+
+      <div class="box">
+
+        <a href="#">
+          <div class="imgbox">
+            <img src="https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/efe1/096904eed4fae93c7a3bae29b5109a14e16d65a02f6b36ac74ee33a4ca56.jpg" alt="수박"></div></a>
+        <h4><a href="#">당도선별 수박, 5kg미만, 1개</a></h4>
+        <span><a href="#">23,000원</a></span>
+        <button>장바구니에 담기</button>
+      </div>
+
+
+
+
+      <div class="box">
+
+        <a href="#">
+          <div class="imgbox">
+            <img src="https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/efe1/096904eed4fae93c7a3bae29b5109a14e16d65a02f6b36ac74ee33a4ca56.jpg" alt="수박"></div></a>
+        <h4><a href="#">당도선별 수박, 5kg미만, 1개</a></h4>
+        <span><a href="#">23,000원</a></span>
+        <button>장바구니에 담기</button>
+      </div>
+
+
+
+
+
+    </div>
+
+  </body>
+</html>
