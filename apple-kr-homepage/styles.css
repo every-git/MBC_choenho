@@ -1,0 +1,1068 @@
+/* ============================================ */
+/* Reset & Base Styles - 기본 스타일 초기화 */
+/* ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* 패딩과 보더를 요소의 전체 너비에 포함 */
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth; /* 부드러운 스크롤 효과 */
+}
+
+body {
+    font-family: 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.47059; /* Apple의 표준 줄 간격 */
+    color: #1d1d1f; /* Apple의 표준 텍스트 색상 */
+    background-color: #ffffff;
+    overflow-x: hidden; /* 가로 스크롤 방지 */
+    font-weight: 400;
+    letter-spacing: -0.022em; /* Apple의 표준 자간 */
+}
+
+/* ============================================ */
+/* Navigation Bar - 상단 고정 네비게이션 바 */
+/* ============================================ */
+.navbar {
+    position: fixed; /* 화면 상단에 고정 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* 반투명 검은색 배경 */
+    backdrop-filter: saturate(180%) blur(20px); /* 블러 효과로 글래스모피즘 구현 */
+    z-index: 1000; /* 다른 요소 위에 표시 */
+    height: 44px; /* Apple의 표준 네비게이션 높이 */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* 스크롤 시 숨김/표시 애니메이션 */
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* 스크롤 시 네비게이션 바 숨김 효과 */
+.navbar.navbar-hidden {
+    transform: translateY(-100%); /* 위로 이동하여 숨김 */
+    opacity: 0;
+    pointer-events: none; /* 클릭 이벤트 비활성화 */
+}
+
+.navbar-container {
+    max-width: 1024px; /* 최대 너비 제한 */
+    margin: 0 auto; /* 중앙 정렬 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 로고, 메뉴, 아이콘 간격 분배 */
+    height: 44px;
+    padding: 0 22px;
+}
+
+/* Apple 로고 영역 */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    flex-shrink: 0; /* 축소 방지 */
+}
+
+.navbar-logo a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    height: 44px;
+    width: 18px;
+    padding: 0;
+    line-height: 0;
+}
+
+.navbar-logo img {
+    width: 18px;
+    height: 44px;
+    display: block;
+    object-fit: contain; /* 이미지 비율 유지 */
+}
+
+/* 메인 메뉴 리스트 */
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 0;
+    flex: 1; /* 남은 공간 차지 */
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center;
+}
+
+.navbar-menu li {
+    margin: 0;
+    position: relative; /* 드롭다운 메뉴 위치 기준 */
+}
+
+.menu-item {
+    position: relative; /* 드롭다운 메뉴 위치 기준 */
+}
+
+/* 메뉴 링크 스타일 */
+.navbar-menu li a {
+    font-size: 12px;
+    font-weight: 400;
+    color: #f5f5f7; /* 밝은 회색 텍스트 */
+    text-decoration: none;
+    padding: 0 10px;
+    transition: color 0.2s ease; /* 호버 시 색상 전환 효과 */
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    display: block;
+    height: 44px;
+    line-height: 44px; /* 수직 중앙 정렬 */
+}
+
+.navbar-menu li a:hover {
+    color: #ffffff; /* 호버 시 흰색으로 변경 */
+}
+
+/* ============================================ */
+/* Dropdown Menu - 드롭다운 메뉴 */
+/* ============================================ */
+.dropdown-menu {
+    position: fixed; /* 화면에 고정 */
+    top: 44px; /* 네비게이션 바 바로 아래 */
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: saturate(180%) blur(20px); /* 블러 효과 */
+    opacity: 0; /* 기본적으로 숨김 */
+    visibility: hidden; /* 보이지 않도록 설정 */
+    transition: opacity 0.2s ease, visibility 0.2s ease; /* 페이드 인/아웃 효과 */
+    padding: 0;
+    margin-top: 0;
+    z-index: 1002; /* 네비게이션 바보다 위에 표시 */
+    border-radius: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    right: 0;
+}
+
+/* 메뉴 항목에 호버 시 드롭다운 표시 */
+.menu-item:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropdown-content {
+    display: flex;
+    gap: 40px; /* 컬럼 간 간격 */
+    padding: 40px 0;
+    max-width: 1024px;
+    margin: 0 auto;
+    justify-content: flex-start;
+}
+
+.dropdown-column {
+    min-width: 200px;
+}
+
+/* 드롭다운 컬럼 제목 */
+.dropdown-column h4 {
+    font-size: 12px;
+    font-weight: 400;
+    color: #86868b; /* 중간 회색 */
+    margin-bottom: 12px;
+    text-transform: uppercase; /* 대문자 변환 */
+    letter-spacing: 0.5px;
+    font-family: 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.dropdown-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-column ul li {
+    margin: 0;
+}
+
+/* 드롭다운 링크 스타일 */
+.dropdown-column ul li a {
+    font-size: 13px;
+    font-weight: 400;
+    color: #f5f5f7;
+    text-decoration: none;
+    padding: 8px 0;
+    display: block;
+    height: auto;
+    line-height: 1.4;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+    font-family: 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.dropdown-column ul li a:hover {
+    color: #ffffff;
+}
+
+/* 네비게이션 우측 아이콘 영역 */
+.navbar-icons {
+    display: flex;
+    align-items: center;
+    gap: 18px; /* 아이콘 간 간격 */
+    flex-shrink: 0;
+}
+
+.navbar-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: opacity 0.2s ease; /* 호버 시 투명도 변경 */
+    height: 44px;
+    width: 15px;
+    padding: 0;
+}
+
+.navbar-icon:hover {
+    opacity: 0.8; /* 호버 시 약간 투명하게 */
+}
+
+.navbar-icon svg {
+    width: 15px;
+    height: 44px;
+    display: block;
+    fill: #f5f5f7; /* SVG 색상 */
+}
+
+.navbar-icon svg path,
+.navbar-icon svg rect {
+    fill: #f5f5f7;
+}
+
+/* ============================================ */
+/* Coming Soon Popup - 준비중 팝업 */
+/* ============================================ */
+.coming-soon-popup {
+    position: fixed; /* 화면 중앙에 고정 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 정확한 중앙 정렬 */
+    z-index: 10000; /* 최상위 레이어 */
+    opacity: 0; /* 기본적으로 숨김 */
+    transition: opacity 0.3s ease; /* 페이드 인 효과 */
+    pointer-events: none; /* 기본적으로 클릭 불가 */
+}
+
+.coming-soon-popup.show {
+    opacity: 1;
+    pointer-events: auto; /* 표시 시 클릭 가능 */
+}
+
+.popup-content {
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: saturate(180%) blur(20px); /* 블러 효과 */
+    color: #f5f5f7;
+    padding: 24px 48px;
+    border-radius: 12px; /* 둥근 모서리 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+    text-align: center;
+    min-width: 200px;
+}
+
+.popup-content p {
+    font-family: 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0;
+    color: #f5f5f7;
+}
+
+/* ============================================ */
+/* Color Variables - 색상 변수 (현재 미사용) */
+/* ============================================ */
+:root {
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-gray-light: #f5f5f7;
+    --color-gray-medium: #86868b;
+    --color-gray-dark: #1d1d1f;
+    --color-blue: #0071e3;
+    --color-blue-light: #2997ff;
+    --color-blue-dark: #0066cc;
+    --color-light-blue: #c7e6f1;
+}
+
+/* ============================================ */
+/* Main Container - 메인 컨텐츠 영역 */
+/* ============================================ */
+.main-container {
+    width: 100%;
+    overflow-x: hidden; /* 가로 스크롤 방지 */
+    padding-top: 44px; /* 네비게이션 바 높이만큼 여백 */
+}
+
+/* ============================================ */
+/* Hero Section - 대형 제품 소개 섹션 */
+/* ============================================ */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 692px; /* 고정 높이 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden; /* 넘치는 컨텐츠 숨김 */
+    padding-top: 55px;
+}
+
+/* 배경 이미지 컨테이너 */
+.background-image-container {
+    position: absolute; /* 절대 위치로 배경 설정 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* 텍스트 뒤에 배치 */
+}
+
+.background-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* 컨테이너를 가득 채움 */
+    background-position: center; /* 중앙 정렬 */
+    background-repeat: no-repeat;
+    transform: scale(1.1); /* 약간 확대하여 줌 효과 */
+}
+
+/* 컨텐츠 컨테이너 */
+.content-container {
+    position: relative;
+    z-index: 1; /* 배경 이미지 위에 표시 */
+    text-align: center;
+    width: 100%;
+    max-width: 1920px;
+    padding: 0 22px;
+}
+
+.heading-container {
+    margin-bottom: 8px;
+}
+
+/* 메인 제목 스타일 */
+.heading-2 {
+    font-family: 'AppleGothic', -apple-system, sans-serif;
+    font-size: 51.3px;
+    font-weight: 400;
+    line-height: 66px;
+    letter-spacing: 0;
+    text-align: center;
+}
+
+.subtitle-container {
+    margin-bottom: 20px;
+}
+
+/* 부제목 스타일 */
+.subtitle {
+    font-family: 'AppleGothic', -apple-system, sans-serif;
+    font-size: 22.4px;
+    font-weight: 400;
+    line-height: 35px;
+    letter-spacing: 0.196px;
+    text-align: center;
+}
+
+/* 출시일 표시 */
+.release-date {
+    margin-bottom: 8px;
+}
+
+.release-date span {
+    font-family: 'AppleGothic', -apple-system, sans-serif;
+    font-size: 14.8px;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 0.228px;
+    color: #86868b; /* 회색 텍스트 */
+}
+
+/* 어두운 배경 섹션 텍스트 색상 */
+.dark-bg .heading-2,
+.dark-bg .subtitle {
+    color: #f5f5f7; /* 밝은 텍스트 */
+}
+
+/* 밝은 배경 섹션 */
+.light-bg {
+    background-color: #f5f5f7;
+}
+
+.light-bg .heading-2,
+.light-bg .subtitle {
+    color: #1d1d1f; /* 어두운 텍스트 */
+}
+
+/* ============================================ */
+/* Button Group - 버튼 그룹 */
+/* ============================================ */
+.button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px; /* 버튼 간 간격 */
+    margin-top: 20px;
+}
+
+/* 기본 버튼 스타일 */
+.btn {
+    display: inline-flex; /* 인라인 플렉스로 정렬 */
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    border-radius: 980px; /* 완전히 둥근 모서리 */
+    font-family: 'AppleGothic', -apple-system, sans-serif;
+    font-size: 13.3px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease; /* 모든 속성 전환 효과 */
+    border: none;
+    height: 44px; /* Apple의 표준 버튼 높이 */
+}
+
+/* 주요 버튼 (파란색 배경) */
+.btn-primary {
+    background-color: #0071e3; /* Apple Blue */
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #0066cc; /* 호버 시 더 어두운 파란색 */
+}
+
+/* 보조 버튼 (투명 배경, 테두리) */
+.btn-secondary {
+    background-color: transparent;
+    color: #2997ff;
+    border: 1px solid #2997ff;
+}
+
+.dark-bg .btn-secondary {
+    color: #2997ff;
+    border-color: #2997ff;
+}
+
+.light-bg .btn-secondary {
+    color: #0066cc;
+    border-color: #0066cc;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(41, 151, 255, 0.1); /* 호버 시 약간의 배경색 */
+}
+
+/* 밝은 버튼 (흰색 배경) */
+.btn-light {
+    background-color: #f5f5f7;
+    color: #000000;
+}
+
+.btn-light:hover {
+    background-color: #e5e5e7; /* 호버 시 약간 어두운 회색 */
+}
+
+/* ============================================ */
+/* Products Grid - 제품 그리드 섹션 */
+/* ============================================ */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2열 그리드 */
+    gap: 12px; /* 그리드 간격 */
+    padding: 12px;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.product-card {
+    position: relative;
+    height: 580px; /* 고정 높이 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 0;
+}
+
+/* 제품 이미지 컨테이너 */
+.product-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* 텍스트 뒤에 배치 */
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* 컨테이너를 가득 채움 */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 제품 컨텐츠 영역 */
+.product-content {
+    position: relative;
+    z-index: 1; /* 이미지 위에 표시 */
+    text-align: center;
+    width: 100%;
+    padding: 40px 22px 0;
+}
+
+/* 제품 제목 스타일 */
+.heading-3 {
+    font-family: 'AppleGothic', -apple-system, sans-serif;
+    font-size: 38.1px;
+    font-weight: 400;
+    line-height: 44px;
+    letter-spacing: 0;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+/* 제품 설명 스타일 */
+.product-description {
+    font-family: 'AppleGothic', -apple-system, sans-serif;
+    font-size: 16.7px;
+    font-weight: 400;
+    line-height: 27px;
+    letter-spacing: 0.228px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* 배경 색상 클래스 */
+.dark-bg {
+    background-color: #000000;
+}
+
+.dark-bg .heading-3,
+.dark-bg .product-description {
+    color: #f5f5f7; /* 밝은 텍스트 */
+}
+
+.light-bg {
+    background-color: #f5f5f7;
+}
+
+.light-bg .heading-3,
+.light-bg .product-description {
+    color: #1d1d1f; /* 어두운 텍스트 */
+}
+
+.light-blue-bg {
+    background-color: #c7e6f1; /* 연한 파란색 배경 */
+}
+
+.light-blue-bg .heading-3,
+.light-blue-bg .product-description {
+    color: #1d1d1f;
+}
+
+/* ============================================ */
+/* Apple TV+ Section - TV+ 갤러리 섹션 */
+/* ============================================ */
+.tv-plus-section {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 12px;
+}
+
+.tv-gallery {
+    position: relative;
+    width: 100%;
+    height: 667px; /* 고정 높이 */
+    overflow: hidden;
+    border-radius: 0;
+}
+
+.tv-slides-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* 개별 슬라이드 */
+.tv-slide {
+    position: absolute; /* 절대 위치로 겹쳐서 배치 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* 기본적으로 숨김 */
+    transition: opacity 0.5s ease-in-out; /* 페이드 전환 효과 */
+}
+
+.tv-slide.active {
+    opacity: 1; /* 활성 슬라이드만 표시 */
+    z-index: 1;
+}
+
+/* TV 슬라이드 배경 */
+.tv-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.tv-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 하단 그라데이션 오버레이 (텍스트 가독성 향상) */
+.tv-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+    z-index: 1;
+}
+
+/* TV 슬라이드 컨텐츠 */
+.tv-content {
+    position: relative;
+    z-index: 2; /* 오버레이 위에 표시 */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end; /* 하단 정렬 */
+    justify-content: center;
+    padding-bottom: 44px;
+}
+
+.tv-info {
+    text-align: left;
+    max-width: 970px;
+    width: 100%;
+    padding: 0 22px;
+}
+
+/* TV 장르 텍스트 */
+.tv-genre {
+    font-family: 'AppleGothic', -apple-system, sans-serif;
+    font-size: 15.6px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0;
+    color: #ffffff;
+    margin-top: 12px;
+    margin-left: 12px;
+}
+
+/* TV 컨트롤 영역 */
+.tv-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+    padding: 0 22px;
+}
+
+/* 슬라이드 인디케이터 도트 */
+.tv-dots {
+    display: flex;
+    gap: 8px; /* 도트 간 간격 */
+    align-items: center;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px; /* 원형 */
+    background-color: rgba(0, 0, 0, 0.42); /* 반투명 검은색 */
+    cursor: pointer;
+    transition: background-color 0.2s ease; /* 색상 전환 효과 */
+}
+
+.dot:hover {
+    background-color: rgba(0, 0, 0, 0.6); /* 호버 시 더 진하게 */
+}
+
+.dot.active {
+    background-color: rgba(0, 0, 0, 0.8); /* 활성 도트는 더 진하게 */
+}
+
+/* 재생 버튼 */
+.tv-play-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 12px; /* 원형 */
+    background-color: #d2d2d7; /* 회색 배경 */
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-left: auto; /* 오른쪽 정렬 */
+    transition: background-color 0.2s ease;
+}
+
+.tv-play-btn:hover {
+    background-color: #c0c0c5; /* 호버 시 더 어두운 회색 */
+}
+
+/* 재생 아이콘 (삼각형) */
+.tv-play-btn::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 6px solid #000000; /* 삼각형 만들기 */
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    margin-left: 2px; /* 중앙 정렬을 위한 오프셋 */
+    transition: all 0.2s ease;
+}
+
+/* 재생 중일 때 정지 아이콘 (사각형) */
+.tv-play-btn.playing::before {
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 0;
+    width: 8px;
+    height: 8px;
+    background-color: #000000; /* 검은색 사각형 */
+    margin-left: 0;
+    border-radius: 1px; /* 약간 둥근 모서리 */
+}
+
+/* ============================================ */
+/* Responsive Design - 반응형 디자인 */
+/* ============================================ */
+
+/* 태블릿 이하 (1068px 이하) */
+@media (max-width: 1068px) {
+    .navbar-menu {
+        display: none; /* 메뉴 숨김 (모바일 메뉴로 대체 가능) */
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr; /* 1열 그리드로 변경 */
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .hero-section {
+        height: 600px; /* 높이 감소 */
+    }
+
+    .heading-2 {
+        font-size: 44px;
+        line-height: 56px;
+    }
+
+    .subtitle {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .heading-3 {
+        font-size: 32px;
+        line-height: 38px;
+    }
+
+    .product-description {
+        font-size: 15px;
+        line-height: 24px;
+    }
+}
+
+/* 모바일 (734px 이하) */
+@media (max-width: 734px) {
+    .navbar-menu {
+        display: none;
+    }
+
+    .hero-section {
+        height: 500px;
+        padding-bottom: 40px;
+    }
+
+    .heading-2 {
+        font-size: 36px;
+        line-height: 44px;
+    }
+
+    .subtitle {
+        font-size: 18px;
+        line-height: 26px;
+    }
+
+    .button-group {
+        flex-direction: column; /* 버튼 세로 배치 */
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 200px; /* 최대 너비 제한 */
+    }
+
+    .product-card {
+        height: 500px;
+    }
+
+    .heading-3 {
+        font-size: 28px;
+        line-height: 34px;
+    }
+
+    .product-description {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .tv-gallery {
+        height: 500px;
+    }
+
+    .tv-info {
+        text-align: center; /* 중앙 정렬 */
+    }
+
+    .tv-genre {
+        text-align: center;
+        margin-left: 0;
+    }
+}
+
+/* 작은 모바일 (480px 이하) */
+@media (max-width: 480px) {
+    .hero-section {
+        height: 400px;
+    }
+
+    .heading-2 {
+        font-size: 28px;
+        line-height: 36px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .product-card {
+        height: 400px;
+    }
+
+    .tv-gallery {
+        height: 400px;
+    }
+}
+
+/* ============================================ */
+/* Footer - 푸터 영역 */
+/* ============================================ */
+.footer {
+    background-color: #f5f5f7; /* 밝은 회색 배경 */
+    padding: 0 22px;
+    margin-top: 0;
+}
+
+.footer-content {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* 법적 고지사항 영역 */
+.footer-notices {
+    padding: 20px 0;
+    border-bottom: 1px solid #d2d2d7; /* 구분선 */
+}
+
+.notice-text {
+    font-family: 'AppleGothic', -apple-system, sans-serif;
+    font-size: 11px; /* 작은 글씨 */
+    font-weight: 400;
+    color: #86868b; /* 회색 텍스트 */
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.notice-text:last-child {
+    margin-bottom: 0;
+}
+
+/* 푸터 링크 그리드 */
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6열 그리드 */
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #d2d2d7;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-heading {
+    font-family: 'AppleGothic', -apple-system, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #1d1d1f;
+    margin-bottom: 10px;
+    letter-spacing: 0;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+    font-family: 'AppleGothic', -apple-system, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #86868b;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-column ul li a:hover {
+    text-decoration: underline; /* 호버 시 밑줄 */
+    color: #1d1d1f; /* 호버 시 더 진한 색상 */
+}
+
+/* 푸터 하단 영역 */
+.footer-bottom {
+    padding: 20px 0;
+}
+
+.footer-locale {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d2d2d7;
+}
+
+.footer-locale p {
+    font-family: 'AppleGothic', -apple-system, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #86868b;
+    line-height: 1.5;
+}
+
+.footer-locale a {
+    color: #0066cc; /* 링크 색상 */
+    text-decoration: none;
+}
+
+.footer-locale a:hover {
+    text-decoration: underline;
+}
+
+.footer-legal {
+    display: flex;
+    justify-content: space-between; /* 저작권과 법적 링크 분리 */
+    align-items: center;
+    flex-wrap: wrap; /* 작은 화면에서 줄바꿈 */
+    gap: 10px;
+}
+
+.copyright {
+    font-family: 'AppleGothic', -apple-system, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #86868b;
+    margin: 0;
+}
+
+.legal-links {
+    display: flex;
+    flex-wrap: wrap; /* 작은 화면에서 줄바꿈 */
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.legal-links li {
+    margin: 0;
+}
+
+.legal-links li a {
+    font-family: 'AppleGothic', -apple-system, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #86868b;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.legal-links li a:hover {
+    text-decoration: underline;
+    color: #1d1d1f;
+}
+
+/* ============================================ */
+/* Footer Responsive - 푸터 반응형 디자인 */
+/* ============================================ */
+
+/* 태블릿 이하 (1068px 이하) */
+@media (max-width: 1068px) {
+    .footer-links {
+        grid-template-columns: repeat(3, 1fr); /* 3열 그리드로 변경 */
+        gap: 30px;
+    }
+}
+
+/* 모바일 (734px 이하) */
+@media (max-width: 734px) {
+    .footer-links {
+        grid-template-columns: repeat(2, 1fr); /* 2열 그리드로 변경 */
+        gap: 20px;
+    }
+
+    .footer-legal {
+        flex-direction: column; /* 세로 배치 */
+        align-items: flex-start; /* 왼쪽 정렬 */
+    }
+
+    .legal-links {
+        flex-direction: column; /* 세로 배치 */
+        gap: 10px;
+    }
+}
+
+/* 작은 모바일 (480px 이하) */
+@media (max-width: 480px) {
+    .footer-links {
+        grid-template-columns: 1fr; /* 1열 그리드로 변경 */
+        gap: 20px;
+    }
+
+    .footer {
+        padding: 0 15px;
+    }
+}
