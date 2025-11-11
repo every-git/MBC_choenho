@@ -28,4 +28,4 @@ git commit -m "$commit_message"
 echo "🚀 GitHub로 푸시합니다..."
 git push
 
-echo "✨ 완료!"
+echo "✨ !완료!"
