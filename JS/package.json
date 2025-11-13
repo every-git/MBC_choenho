@@ -1,0 +1,9 @@
+{
+  "name": "js-study",
+  "version": "1.0.0",
+  "description": "JavaScript 학습 프로젝트",
+  "scripts": {
+    "test:map": "node 4장/ec6_map_test.js"
+  }
+}
+
