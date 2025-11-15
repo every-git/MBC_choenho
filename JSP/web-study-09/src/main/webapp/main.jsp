@@ -19,13 +19,13 @@
         <hr>
         
         <p>
-            <a href="login.do">로그인 페이지로 돌아가기</a> |
-            <a href="logout.do">로그아웃</a>
+            <a href="<%=request.getContextPath()%>/login.do">로그인 페이지로 돌아가기</a> |
+            <a href="<%=request.getContextPath()%>/logout.do">로그아웃</a>
         </p>
     <% 
         } else {
     %>
-        <p>세션이 없습니다. <a href="login.do">로그인</a> 해주세요.</p>
+        <p>세션이 없습니다. <a href="<%=request.getContextPath()%>/login.do">로그인</a> 해주세요.</p>
     <% 
         }
     %>

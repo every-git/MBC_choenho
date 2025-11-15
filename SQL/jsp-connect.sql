@@ -26,3 +26,15 @@ WHERE userid = 'somi';
 SELECT phone FROM member
 WHERE userid = 'chulsoo';
 
+
+
+-- Restore password for userid 'rejung7'.
+-- This sets the password to '1234' if the row exists,
+-- and inserts a new member with placeholder contact info if it does not.
+UPDATE member SET pwd = '1234' WHERE userid = 'rejung7';
+INSERT INTO member (name, userid, pwd, email, phone, admin)
+SELECT '정중', 'rejung7', '1234', 'rejung7@example.com', '010-0000-0000', 0
+FROM dual
+WHERE NOT EXISTS (SELECT 1 FROM member WHERE userid = 'rejung7');
+COMMIT;
+
