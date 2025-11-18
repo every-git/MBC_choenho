@@ -97,7 +97,8 @@ public class UpdateServlet extends HttpServlet {
 		request.setAttribute("mvo", mvo);
 		
 		// 회원정보 수정 페이지로 포워딩
-		request.getRequestDispatcher("/member/memberUpdate.jsp").forward(request, response);
+		request.getRequestDispatcher("/member/memberUpdate.jsp")
+			.forward(request, response);
 	}
 
 	/**

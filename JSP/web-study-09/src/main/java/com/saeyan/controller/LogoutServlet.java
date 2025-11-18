@@ -54,17 +54,7 @@ public class LogoutServlet extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/login.do");
     }
 
-    /**
-     * POST 요청 처리: GET 요청과 동일하게 처리
-     * 
-     * @param request HTTP 요청 객체
-     * @param response HTTP 응답 객체
-     * @throws ServletException 서블릿 처리 중 오류 발생 시
-     * @throws IOException 입출력 오류 발생 시
-     * 
-     * 참고: 메인 페이지의 로그아웃 버튼이 POST 방식으로 전송되므로
-     * POST 요청도 처리할 수 있도록 doGet을 호출
-     */
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
