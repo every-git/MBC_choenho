@@ -11,7 +11,7 @@
 <body>
    <div id="wrap" align="center">
       <h1>상품 등록 - 관리자 페이지</h1>
-      <form method="post" name="frm" enctype="multipart/form-data" >
+      <form method="post" name="frm" enctype="multipart/form-data" action="${pageContext.request.contextPath}/productWrite.do">
          <table>
             <tr>
                <th>상 품 명</th>
@@ -23,7 +23,7 @@
             </tr>
             <tr>
                <th>사 진</th>
-               <td><input type="file" name="pictureUrl"><br>
+               <td><input type="file" name="pictureUrl" accept="image/*"><br>
                   (주의사항 : 이미지를 변경하고자 할때만 선택하시오)</td>
             </tr>
             <tr>

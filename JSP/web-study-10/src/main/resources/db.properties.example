@@ -1,0 +1,52 @@
+# ============================================
+# 데이터베이스 연결 설정 파일
+# ============================================
+# 이 파일을 db.properties로 복사하여 사용하세요
+# cp db.properties.example db.properties
+# ============================================
+
+# ============================================
+# 로컬 개발 환경 설정
+# ============================================
+db.url=jdbc:mysql://localhost:3306/edudb?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
+db.username=jdbctest
+db.password=1234
+db.driver=com.mysql.cj.jdbc.Driver
+
+# ============================================
+# 운영 환경 설정 (배포 시 아래 값으로 변경)
+# ============================================
+# AWS RDS 예시
+# db.url=jdbc:mysql://your-rds-endpoint.ap-northeast-2.rds.amazonaws.com:3306/edudb?serverTimezone=Asia/Seoul&useSSL=true
+# db.username=admin
+# db.password=your-strong-password-here
+# db.driver=com.mysql.cj.jdbc.Driver
+
+# Cafe24 호스팅 예시
+# db.url=jdbc:mysql://mysql123.cafe24.com:3306/user_id?serverTimezone=Asia/Seoul
+# db.username=user_id
+# db.password=your-password
+# db.driver=com.mysql.cj.jdbc.Driver
+
+# 가비아 호스팅 예시
+# db.url=jdbc:mysql://mysql.gabia.com:3306/dbname?serverTimezone=Asia/Seoul
+# db.username=username
+# db.password=your-password
+# db.driver=com.mysql.cj.jdbc.Driver
+
+# ============================================
+# 커넥션 풀 설정 (선택사항)
+# ============================================
+# db.pool.maxActive=20
+# db.pool.maxIdle=10
+# db.pool.minIdle=5
+# db.pool.maxWait=10000
+
+# ============================================
+# 주의사항
+# ============================================
+# 1. 실제 사용할 db.properties 파일은 .gitignore에 추가하세요
+# 2. 운영 서버에서는 반드시 강력한 비밀번호를 사용하세요
+# 3. useSSL=true로 설정하여 보안 연결을 사용하세요 (운영 환경)
+# ============================================
+

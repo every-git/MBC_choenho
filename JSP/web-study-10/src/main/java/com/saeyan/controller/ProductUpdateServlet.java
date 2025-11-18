@@ -15,22 +15,34 @@ import com.saeyan.dao.ProductDAO;
 import com.saeyan.dto.ProductVO;
 
 
-@WebServlet("/productWrite.do")
-public class ProductWriteServlet extends HttpServlet {
+@WebServlet("/productUpdate.do")
+public class ProductUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-    public ProductWriteServlet() {
-       
+    
+    public ProductUpdateServlet() {
+        
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		//1. code 값 가져오기. 일단은 문자형으로 가져오기.
+		String code = request.getParameter("code");
 		
-		request.getRequestDispatcher("/product/productWrite.jsp")
-			.forward(request, response);
-		
+		//2. ProductDAO 통해서 code값 전체 가져오기
+		ProductDAO pdao = ProductDAO.getInstance();
+
+		ProductVO vo = pdao.selectProductByCode(code); // ProductVO 클래스 저장
+
+		//3. request.setAttribute()저장
+		request.setAttribute("product", vo);
+
+		//4. forward(product/productUpdate.jsp)페이지로 이동
+		request.getRequestDispatcher("/product/productUpdate.jsp")
+		.forward(request, response);
+
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("utf-8");
@@ -51,18 +63,19 @@ public class ProductWriteServlet extends HttpServlet {
 		MultipartRequest multi = 
 				new MultipartRequest(request, path, sizeLimit, encType, new DefaultFileRenamePolicy());
 		
+		int code = Integer.parseInt(multi.getParameter("code"));
 		String name = multi.getParameter("name");
 		int price = Integer.parseInt(multi.getParameter("price"));
-		
+		String description = multi.getParameter("description");
 		//파일 업로드 ---getFilesystemName
 		String pictureUrl = multi.getFilesystemName("pictureUrl");
-		String description = multi.getParameter("description");
-		//String originName = multi.getOriginalFileName("description");
-		//System.out.println("originName: " + originName);
 
-
-
+		if(pictureUrl == null) {
+			pictureUrl = multi.getParameter("nonmakeImg");
+		}
+		
 		ProductVO vo = new ProductVO();
+		vo.setCode(code);
 		vo.setName(name);
 		vo.setPrice(price);
 		vo.setPictureUrl(pictureUrl);
@@ -70,11 +83,10 @@ public class ProductWriteServlet extends HttpServlet {
 
 		ProductDAO pdao = ProductDAO.getInstance();
 		// ProductDAO클래스 insertProduct메서드 호출
-		pdao.insertProduct(vo);
+		pdao.updateProduct(vo);
 		
 		// 등록 후 상품 리스트 페이지로 리다이렉트 : Post 후에는 항상 리다이렉트
 		response.sendRedirect(contextPath + "/productList.do");
-
 	}
 
 }
