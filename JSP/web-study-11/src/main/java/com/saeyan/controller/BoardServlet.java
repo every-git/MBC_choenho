@@ -40,6 +40,10 @@ public class BoardServlet extends HttpServlet {
 	 * 4. Action이 JSP로 forward하여 화면 출력
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 요청 인코딩 설정 (한글 처리)
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
 		// 1단계: URL에서 command 파라미터 추출
 		// 예: BoardServlet?command=board_list → "board_list" 추출
 		String command = request.getParameter("command");
@@ -65,8 +69,24 @@ public class BoardServlet extends HttpServlet {
 	}
 
 	
+	/**
+	 * POST 요청 처리 메서드
+	 * 
+	 * 요청 예시: 게시글 등록 폼에서 POST 방식으로 제출
+	 * 
+	 * 처리 과정:
+	 * 1. POST 요청 본문의 한글 인코딩 설정
+	 * 2. doGet() 메서드를 호출하여 동일한 로직 처리
+	 *    (GET과 POST 모두 command 파라미터로 Action을 찾아 실행)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// POST 요청 본문의 한글 인코딩 설정 (GET은 URL 파라미터이므로 불필요)
+		request.setCharacterEncoding("UTF-8");
 		
+		// doGet() 메서드를 호출하여 동일한 로직 처리
+		// GET과 POST 모두 command 파라미터로 Action을 찾아 실행하므로
+		// 코드 중복을 피하기 위해 doGet()을 재사용
+		doGet(request, response);
 	}
 
 }

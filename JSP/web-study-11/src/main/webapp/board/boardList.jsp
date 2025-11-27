@@ -57,9 +57,8 @@
                <td>${board.num}</td>
                <%-- 게시글 제목 출력 (클릭 시 상세보기 페이지로 이동) --%>
                <td>
-                  <a href="BoardServlet?command=board_view&num=${board.num}">
-                     ${board.title}
-                  </a>
+               <a href="BoardServlet?command=board_view&num=${board.num}">
+               ${board.title}</a>
                </td>
                <%-- 작성자 이름 출력 --%>
                <td>${board.name}</td>

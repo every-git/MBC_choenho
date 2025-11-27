@@ -1,7 +1,15 @@
 package com.saeyan.controller;
 
 import com.saeyan.controller.action.Action;
+import com.saeyan.controller.action.BoardCheckPassAction;
+import com.saeyan.controller.action.BoardCheckPassFormAction;
+import com.saeyan.controller.action.BoardDeleteAction;
 import com.saeyan.controller.action.BoardListAction;
+import com.saeyan.controller.action.BoardUpdateAction;
+import com.saeyan.controller.action.BoardUpdateFormAction;
+import com.saeyan.controller.action.BoardViewAction;
+import com.saeyan.controller.action.BoardWriteAction;
+import com.saeyan.controller.action.BoardWriteFormAction;
 
 /**
  * Action 인스턴스를 생성하는 팩토리 클래스
@@ -58,7 +66,23 @@ public class ActionFactory {
             // BoardListAction은 데이터베이스에서 게시글 목록을 조회하고
             // boardList.jsp로 forward하여 화면에 표시하는 역할
             action = new BoardListAction();
-        } 
+        } else if(command.equals("board_write_form") ) {
+        	action = new BoardWriteFormAction();
+        } else if(command.equals("board_write")) {
+        	action = new BoardWriteAction();
+        } else if(command.equals("board_view")) {
+        	action = new BoardViewAction();
+        } else if(command.equals("board_check_pass_form")) {
+        	action = new BoardCheckPassFormAction();
+        } else if(command.equals("board_check_pass")) {
+        	action = new BoardCheckPassAction();
+        } else if(command.equals("board_delete")) {
+        	action = new BoardDeleteAction();
+        } else if(command.equals("board_update_form")) {
+        	action = new BoardUpdateFormAction();
+        } else if(command.equals("board_update")) {
+        	action = new BoardUpdateAction();
+        }
         // 다른 command 값들도 여기에 추가 가능
         // else if(command.equals("board_write")) {
         //     action = new BoardWriteAction();
