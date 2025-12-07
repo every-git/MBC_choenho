@@ -1,12 +1,11 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
+import Editor from '../component/Editor';
 
 const Home = () => {
-    const {searchParams, setSearchParams} = useSearchParams();
     
     return (
         <div>
-            <h1>Home 페이지 입니다.</h1>
+            <Editor onSubmit={() => alert('작성 완료 버튼을 클릭했음')} />
         </div>
     );
 };
