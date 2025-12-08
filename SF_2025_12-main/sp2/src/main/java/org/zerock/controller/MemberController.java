@@ -11,6 +11,7 @@ import java.util.List;
 import org.zerock.dto.MemberDTO;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -52,14 +53,14 @@ public class MemberController {
     } // end of read
 
     @PostMapping("/modify")
-    public String modify(MemberDTO dto) {
+    public String modifyPost(MemberDTO dto) {
         log.info("Member modify: " + dto);
         service.update(dto);
         return "redirect:/member/list";
     } // end of modify
 
     @PostMapping("/delete")
-    public String delete(int mno) {
+    public String deletePost(@RequestParam("mno") int mno) {
         log.info("Member delete: " + mno);
         service.delete(mno);
         return "redirect:/member/list";

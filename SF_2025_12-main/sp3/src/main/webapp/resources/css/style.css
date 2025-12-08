@@ -1,0 +1,15 @@
+@charset "UTF-8";
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-card {
+  transition: transform 0.2s;
+}
+
+.todo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
