@@ -12,6 +12,7 @@
 	    <groupId>org.projectlombok</groupId>
 	    <artifactId>lombok</artifactId>
 	    <version>1.18.42</version>
+	    <scope>provided</scope>
 	</dependency>
   	
   	<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
@@ -55,7 +56,14 @@
 	<dependency>
 	    <groupId>org.junit.jupiter</groupId>
 	    <artifactId>junit-jupiter-api</artifactId>
-	    <version>6.0.1</version>
+	    <version>5.11.4</version>
+	    <scope>test</scope>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.junit.jupiter</groupId>
+	    <artifactId>junit-jupiter-engine</artifactId>
+	    <version>5.11.4</version>
 	    <scope>test</scope>
 	</dependency>
 	
@@ -129,11 +137,28 @@
         <version>3.13.0</version>
         <configuration>
           <release>21</release>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>1.18.42</version>
+            </path>
+          </annotationProcessorPaths>
         </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
         <version>3.2.3</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.5</version>
+        <configuration>
+          <includes>
+            <include>**/*Tests.java</include>
+          </includes>
+        </configuration>
       </plugin>
     </plugins>
   </build>

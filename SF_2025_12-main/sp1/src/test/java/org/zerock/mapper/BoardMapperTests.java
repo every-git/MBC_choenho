@@ -78,5 +78,40 @@ public class BoardMapperTests {
 		boardMapper.list().forEach(dto->log.info(dto));
 		
 	}
-	
+
+	@Test
+	public void testPaging() {
+		int page = 1;
+
+		//계산
+		int skip = (page - 1) * 10;
+		int count = 10;
+
+		boardMapper.list2(skip, count)
+			.forEach(board->log.info(board));
+	}
+
+	@Test
+	public void testSearch() {
+		int page= 2;
+
+		int skip = (page - 1) * 10;
+		int count = 10;
+
+		String[] types = new String[] {"T", "C", "W"};
+		String keyword = "test";
+
+		boardMapper.listSearch(skip, count, types, keyword);
+	}
+
+	@Test
+	public void testCount() {
+		
+		String[] types = new String[] {"T", "C"};
+		String keyword = "test";
+
+		int result = boardMapper.listCountSearch(types, keyword);
+		log.info("result : " + result);
+	}
+
 }

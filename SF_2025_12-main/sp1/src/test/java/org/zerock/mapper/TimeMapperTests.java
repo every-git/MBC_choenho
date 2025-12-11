@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.stream.IntStream;
+
 import lombok.extern.log4j.Log4j2;
 
 @ExtendWith(SpringExtension.class)
@@ -26,5 +28,10 @@ public class TimeMapperTests {
 	public void testTime2() {
 		log.info("--------------------------");
 		log.info(timeMapper.getTime2());
+	}
+
+	@Test
+	public void testPagNums() {
+		IntStream.range(1, 5).forEach(i->log.info(i));
 	}
 }
