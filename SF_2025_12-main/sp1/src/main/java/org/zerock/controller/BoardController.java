@@ -40,10 +40,12 @@ public class BoardController {
 	public void list(
 			@RequestParam(name="page", defaultValue ="1") int page,
 			@RequestParam(name="size", defaultValue = "10") int size,
+			@RequestParam(name="type", defaultValue = "") String type,
+			@RequestParam(name="keyword", defaultValue = "") String keyword,
 			Model model) {
 		log.info("board list");
 		
-		BoardListPaginDTO list = boardService.getList(page, size);
+		BoardListPaginDTO list = boardService.getList(page, size, type, keyword);
 		
 		log.info(list);
 		model.addAttribute("dto", list);

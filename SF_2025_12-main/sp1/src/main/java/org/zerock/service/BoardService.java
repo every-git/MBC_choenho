@@ -31,7 +31,12 @@ public class BoardService {
 
 		int skip = (page - 1) * size;
 
-		String[] types = typeStr != null ? typeStr.split("") : null;
+		// typeStr이 null이거나 빈 문자열이거나, keyword가 null이거나 빈 문자열이면 검색 조건 없음
+		String[] types = null;
+		if (typeStr != null && !typeStr.trim().isEmpty() && keyword != null && !keyword.trim().isEmpty()) {
+			types = typeStr.split("");
+		}
+		
 		List<BoardDTO> list = boardMapper.listSearch(skip, size, types, keyword);
 
 		int total = boardMapper.listCountSearch(types, keyword);

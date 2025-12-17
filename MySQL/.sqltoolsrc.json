@@ -1,0 +1,54 @@
+{
+  "connections": [
+    {
+      "name": "Local instance 3306",
+      "driver": "MySQL",
+      "host": "localhost",
+      "port": 3306,
+      "database": "dcproject",
+      "username": "root",
+      "password": "",
+      "connectionTimeout": 30000,
+      "ssl": false
+    },
+    {
+      "name": "jdbctest",
+      "driver": "MySQL",
+      "host": "127.0.0.1",
+      "port": 3306,
+      "database": "dcproject",
+      "username": "jdbctest",
+      "password": "",
+      "connectionTimeout": 30000,
+      "ssl": true
+    },
+    {
+      "name": "NAS_DB",
+      "driver": "MySQL",
+      "host": "192.168.0.7",
+      "port": 3307,
+      "database": "dcproject",
+      "username": "jdbctest",
+      "password": "",
+      "connectionTimeout": 30000,
+      "ssl": true
+    },
+    {
+      "name": "springdbuser",
+      "driver": "MySQL",
+      "host": "127.0.0.1",
+      "port": 3306,
+      "database": "springdb",
+      "username": "root",
+      "password": "",
+      "connectionTimeout": 30000,
+      "ssl": true
+    }
+  ]
+}
+
+
+
+
+
+

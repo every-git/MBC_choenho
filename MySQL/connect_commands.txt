@@ -1,0 +1,52 @@
+MySQL 서버 연결 명령어 모음
+
+===========================================
+1. Local instance 3306
+===========================================
+mysql -h localhost -P 3306 -u root -p dcproject
+
+연결 문자열:
+mysql://root@localhost:3306/dcproject
+
+===========================================
+2. jdbctest
+===========================================
+mysql -h 127.0.0.1 -P 3306 -u jdbctest -p dcproject
+
+연결 문자열:
+mysql://jdbctest@127.0.0.1:3306/dcproject
+
+===========================================
+3. NAS_DB
+===========================================
+mysql -h 192.168.0.7 -P 3307 -u jdbctest -p dcproject
+
+연결 문자열:
+mysql://jdbctest@192.168.0.7:3307/dcproject
+
+===========================================
+4. springdbuser
+===========================================
+mysql -h 127.0.0.1 -P 3306 -u root -p springdb
+
+연결 문자열:
+mysql://root@127.0.0.1:3306/springdb
+
+===========================================
+비밀번호 없이 연결 (권장하지 않음)
+===========================================
+# 비밀번호가 없는 경우에는 -p 옵션을 제거하세요
+mysql -h localhost -P 3306 -u root dcproject
+
+===========================================
+SSL 연결 포함 (NAS_DB, jdbctest, springdb)
+===========================================
+mysql -h 127.0.0.1 -P 3306 -u jdbctest -p --ssl-mode=REQUIRED dcproject
+mysql -h 192.168.0.7 -P 3307 -u jdbctest -p --ssl-mode=REQUIRED dcproject
+mysql -h 127.0.0.1 -P 3306 -u root -p --ssl-mode=REQUIRED springdb
+
+
+
+
+
+

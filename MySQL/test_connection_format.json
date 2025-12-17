@@ -1,0 +1,44 @@
+{
+  "mysql.connections": [
+    {
+      "name": "Local instance 3306",
+      "host": "localhost",
+      "port": 3306,
+      "username": "root",
+      "password": "1234",
+      "database": "dcproject",
+      "ssl": false
+    },
+    {
+      "name": "jdbctest",
+      "host": "127.0.0.1",
+      "port": 3306,
+      "username": "jdbctest",
+      "password": "1234",
+      "database": "dcproject",
+      "ssl": true
+    },
+    {
+      "name": "NAS_DB",
+      "host": "192.168.0.7",
+      "port": 3307,
+      "username": "jdbctest",
+      "password": "1234",
+      "database": "dcproject",
+      "ssl": true
+    },
+    {
+      "name": "springdbuser",
+      "host": "127.0.0.1",
+      "port": 3306,
+      "username": "root",
+      "password": "1234",
+      "database": "springdb",
+      "ssl": true
+    }
+  ]
+}
+
+
+
+

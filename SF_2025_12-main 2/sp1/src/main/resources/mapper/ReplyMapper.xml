@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.ReplyMapper">
+  
+  <insert id="insert">
+
+    <selectKey order="AFTER" keyProperty="rno" resultType="int">
+      select LAST_INSERT_ID()
+    </selectKey>
+
+  	insert into tbl_reply(bno, replyText, replyer)
+  	values (#{bno}, #{replyText}, #{replyer})
+  </insert>
+
+  <select id="read" resultType="org.zerock.dto.ReplyDTO">
+    select * from tbl_reply where rno = #{rno}
+  </select>
+
+  <delete id="delete">
+    delete from tbl_reply where rno = #{rno}
+  </delete>
+
+  <update id="update">
+    update tbl_reply 
+    set replyText = #{replyText},
+        updatedate = now() 
+    where rno = #{rno}
+  </update>
+
+  <select id="listOfBoard" resultType="org.zerock.dto.ReplyDTO">
+    select * from tbl_reply where bno = #{bno}
+    and rno > 0
+    order by rno asc
+    limit #{limit} offset #{skip}
+  </select>
+
+  <select id="countOfBoard" resultType="int">
+    select count(rno) from tbl_reply 
+    where bno = #{bno} and rno > 0
+  </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

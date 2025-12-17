@@ -54,18 +54,20 @@
 	select bno, title, writer, regDate
 	from tbl_board
 	where delflag = false
-	<if test="types != null and keyword != null">
-		<foreach collection="types" item="type" open=" and (" separator=" or " close=")">
-			<if test='type.equals("T")'>
-				title like concat('%', #{keyword}, '%')
-			</if>
-			<if test='type.equals("C")'>
-				content like concat('%', #{keyword}, '%')
-			</if>
-			<if test='type.equals("W")'>
-				writer like concat('%', #{keyword}, '%')
-			</if>
-		</foreach>
+	<if test="types != null and types.length > 0 and keyword != null and keyword != ''">
+		<trim prefix="and (" suffix=")" prefixOverrides="or">
+			<foreach collection="types" item="type">
+				<if test='type != null and type.equals("T")'>
+					or title like concat('%', #{keyword}, '%')
+				</if>
+				<if test='type != null and type.equals("C")'>
+					or content like concat('%', #{keyword}, '%')
+				</if>
+				<if test='type != null and type.equals("W")'>
+					or writer like concat('%', #{keyword}, '%')
+				</if>
+			</foreach>
+		</trim>
 	</if>
 	order by bno desc
 	limit #{skip}, #{count}
@@ -75,18 +77,20 @@
   select count(bno)	
 	from tbl_board
 	where delflag = false
-	<if test="types != null and keyword != null">
-		<foreach collection="types" item="type" open=" and (" separator=" or " close=")">
-			<if test='type.equals("T")'>
-				title like concat('%', #{keyword}, '%')
-			</if>
-			<if test='type.equals("C")'>
-				content like concat('%', #{keyword}, '%')
-			</if>
-			<if test='type.equals("W")'>
-				writer like concat('%', #{keyword}, '%')
-			</if>
-		</foreach>
+	<if test="types != null and types.length > 0 and keyword != null and keyword != ''">
+		<trim prefix="and (" suffix=")" prefixOverrides="or">
+			<foreach collection="types" item="type">
+				<if test='type != null and type.equals("T")'>
+					or title like concat('%', #{keyword}, '%')
+				</if>
+				<if test='type != null and type.equals("C")'>
+					or content like concat('%', #{keyword}, '%')
+				</if>
+				<if test='type != null and type.equals("W")'>
+					or writer like concat('%', #{keyword}, '%')
+				</if>
+			</foreach>
+		</trim>
 	</if>
   </select>
 

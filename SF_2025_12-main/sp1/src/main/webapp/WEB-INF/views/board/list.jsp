@@ -67,6 +67,25 @@
 					</tbody>
 				</table>
 			</div>
+
+			<!--검색 영역-->
+			<div class="card-body">
+				<div class="d-flex justify-content-end" style="margin-bottom: 2em;">
+					<div style="width: 50%;" class="d-flex">
+						<select id="typeSelect" class="form-select form-control me-2">
+							<option value="">--</option>
+							<option value="T" <c:if test="${dto.types == 'T'}">selected</c:if>>제목</option>
+							<option value="C" <c:if test="${dto.types == 'C'}">selected</c:if>>내용</option>
+							<option value="W" <c:if test="${dto.types == 'W'}">selected</c:if>>작성자</option>
+							<option value="TC" <c:if test="${dto.types == 'TC'}">selected</c:if>>제목+내용</option>
+							<option value="TW" <c:if test="${dto.types == 'TW'}">selected</c:if>>제목+작성자</option>
+							<option value="TCW" <c:if test="${dto.types == 'TCW'}">selected</c:if>>제목+내용+작성자</option>
+						</select>
+						<input type="text" id="keywordInput" class="form-control me-2" placeholder="Search" value="<c:out value="${dto.keyword}" />">
+						<button class="btn btn-outline-info searchBtn" type="button">Search</button>
+					</div>
+				</div>
+			</div>
 			
 			<!-- ============================================ -->
 			<!-- 페이지네이션 영역 -->
@@ -89,7 +108,7 @@
 					<c:choose>
 						<c:when test="${dto.prev}">
 							<a class="page-link" 
-							   href="${pageContext.request.contextPath}/board/list?page=${dto.start - 1}&size=${dto.size}">
+							   href="${pageContext.request.contextPath}/board/list?page=${dto.start - 1}&size=${dto.size}<c:if test='${dto.types != null and dto.types != ""}'>&type=<c:out value='${dto.types}' /></c:if><c:if test='${dto.keyword != null and dto.keyword != ""}'>&keyword=<c:out value='${dto.keyword}' /></c:if>">
 								이전
 							</a>
 						</c:when>
@@ -110,7 +129,7 @@
 						<!-- 현재 페이지와 같으면 active 클래스 추가하여 강조 표시 -->
 						<li class="page-item <c:if test='${dto.page == num}'>active</c:if>">
 							<a class="page-link" 
-							   href="${pageContext.request.contextPath}/board/list?page=${num}&size=${dto.size}">
+							   href="${pageContext.request.contextPath}/board/list?page=${num}&size=${dto.size}<c:if test='${dto.types != null and dto.types != ""}'>&type=<c:out value='${dto.types}' /></c:if><c:if test='${dto.keyword != null and dto.keyword != ""}'>&keyword=<c:out value='${dto.keyword}' /></c:if>">
 								<c:out value="${num}" />
 							</a>
 						</li>
@@ -124,7 +143,7 @@
 						<c:choose>
 							<c:when test="${dto.next}">
 								<a class="page-link" 
-								   href="${pageContext.request.contextPath}/board/list?page=${dto.end + 1}&size=${dto.size}">
+								   href="${pageContext.request.contextPath}/board/list?page=${dto.end + 1}&size=${dto.size}<c:if test='${dto.types != null and dto.types != ""}'>&type=<c:out value='${dto.types}' /></c:if><c:if test='${dto.keyword != null and dto.keyword != ""}'>&keyword=<c:out value='${dto.keyword}' /></c:if>">
 									다음
 								</a>
 							</c:when>
@@ -160,7 +179,9 @@
 	</div>
 </div>
 
-<script type="text/javascript" defer="defer">
+<script type="text/javascript">
+	console.log('스크립트 시작');
+	
 	// 등록 완료 모달 처리
 	const result = '${result}';
 	
@@ -170,15 +191,110 @@
 		myModal.show();
 	}
 	
-	// 페이지네이션 이벤트 처리
-	document.addEventListener('DOMContentLoaded', function() {
-		// 페이지 이동 시 상단으로 부드럽게 스크롤
+	// 검색 기능 초기화 함수
+	function initSearch() {
+		console.log('검색 기능 초기화 시작');
+		
+		const searchBtn = document.querySelector('.searchBtn');
+		const typeSelect = document.getElementById('typeSelect');
+		const keywordInput = document.getElementById('keywordInput');
+		
+		console.log('검색 요소 확인:', {
+			searchBtn: searchBtn,
+			typeSelect: typeSelect,
+			keywordInput: keywordInput
+		});
+		
+		if(!searchBtn) {
+			console.error('검색 버튼을 찾을 수 없습니다!');
+			return;
+		}
+		
+		if(!typeSelect) {
+			console.error('검색 타입 선택을 찾을 수 없습니다!');
+			return;
+		}
+		
+		if(!keywordInput) {
+			console.error('검색 입력 필드를 찾을 수 없습니다!');
+			return;
+		}
+		
+		// 검색 함수
+		function performSearch() {
+			try {
+				const type = typeSelect.value || '';
+				const keyword = keywordInput.value.trim() || '';
+				const size = ${dto.size != null ? dto.size : 10};
+				const contextPath = '${pageContext.request.contextPath}';
+				
+				console.log('검색 실행:', {type: type, keyword: keyword, size: size, contextPath: contextPath});
+				
+				// URL 파라미터 생성
+				const params = ['page=1', 'size=' + size];
+				
+				if(keyword) {
+					if(type) {
+						params.push('type=' + encodeURIComponent(type));
+					}
+					params.push('keyword=' + encodeURIComponent(keyword));
+				}
+				
+				const url = contextPath + '/board/list?' + params.join('&');
+				console.log('생성된 URL:', url);
+				
+				window.location.href = url;
+			} catch(error) {
+				console.error('검색 오류:', error);
+				alert('검색 중 오류: ' + error.message);
+			}
+		}
+		
+		// 검색 버튼 클릭 이벤트
+		searchBtn.addEventListener('click', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			console.log('검색 버튼 클릭됨!');
+			performSearch();
+		});
+		
+		// Enter 키 이벤트
+		keywordInput.addEventListener('keypress', function(e) {
+			if(e.key === 'Enter' || e.keyCode === 13) {
+				e.preventDefault();
+				e.stopPropagation();
+				console.log('Enter 키 입력됨!');
+				performSearch();
+			}
+		});
+		
+		console.log('검색 기능 초기화 완료');
+	}
+	
+	// 페이지네이션 스크롤 처리
+	function initPagination() {
 		document.querySelectorAll('.pagination .page-link[href]').forEach(function(link) {
 			link.addEventListener('click', function() {
 				window.scrollTo({ top: 0, behavior: 'smooth' });
 			});
 		});
-	});
+	}
+	
+	// DOM 로드 완료 시 실행
+	if(document.readyState === 'loading') {
+		console.log('문서 로딩 중, DOMContentLoaded 대기');
+		document.addEventListener('DOMContentLoaded', function() {
+			console.log('DOMContentLoaded 실행됨');
+			initSearch();
+			initPagination();
+		});
+	} else {
+		console.log('문서 이미 로드됨, 즉시 실행');
+		initSearch();
+		initPagination();
+	}
+	
+	console.log('스크립트 로드 완료');
 </script>
 
 <%@ include file="/WEB-INF/views/includes/footer.jsp" %>

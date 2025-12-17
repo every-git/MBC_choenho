@@ -1,0 +1,49 @@
+{
+  "connections": [
+    {
+      "name": "Local instance 3306",
+      "host": "localhost",
+      "port": 3306,
+      "user": "root",
+      "password": "",
+      "database": "dcproject",
+      "serverVersion": "8.0.39"
+    },
+    {
+      "name": "jdbctest",
+      "host": "127.0.0.1",
+      "port": 3306,
+      "user": "jdbctest",
+      "password": "",
+      "database": "dcproject",
+      "serverVersion": "8.0.39",
+      "useSSL": true
+    },
+    {
+      "name": "NAS_DB",
+      "host": "192.168.0.7",
+      "port": 3307,
+      "user": "jdbctest",
+      "password": "",
+      "database": "dcproject",
+      "serverVersion": "8.0.44",
+      "useSSL": true
+    },
+    {
+      "name": "springdbuser",
+      "host": "127.0.0.1",
+      "port": 3306,
+      "user": "root",
+      "password": "",
+      "database": "springdb",
+      "serverVersion": "8.0.39",
+      "useSSL": true
+    }
+  ]
+}
+
+
+
+
+
+
