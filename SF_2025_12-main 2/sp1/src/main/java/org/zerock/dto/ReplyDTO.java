@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -14,11 +16,17 @@ import lombok.NoArgsConstructor;
 public class ReplyDTO {
 
 	private int rno;
-	private Long bno;
 	private String replyText;
 	private String replyer;
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDateTime replyDate;
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDateTime updateDate;
+
 	private boolean delflag;
+
+	private Long bno;
 	
 }

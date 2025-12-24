@@ -20,3 +20,4 @@ echo "4️⃣ springdb 데이터베이스 내 테이블 확인 (존재하는 경
 mysql -h 127.0.0.1 -P 3306 -u root -p -e "USE springdb; SHOW TABLES;" 2>&1
 
 
+

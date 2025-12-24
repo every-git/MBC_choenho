@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.ReplyMapper">
+  
+  <resultMap id="replyResultMap" type="org.zerock.dto.ReplyDTO">
+    <id property="rno" column="rno"/>
+    <result property="replyText" column="replyText"/>
+    <result property="replyer" column="replyer"/>
+    <result property="replyDate" column="replydate"/>
+    <result property="updateDate" column="updatedate"/>
+    <result property="deflag" column="deflag"/>
+    <result property="bno" column="bno"/>
+  </resultMap>
+  
+  <insert id="insert">
+  	
+  	<selectKey order="AFTER" keyProperty="rno"
+  		resultType="int">
+  		select last_insert_id()
+  	</selectKey>
+  
+  	insert into tbl_reply(bno, replyText, replyer)
+  	values(#{bno}, #{replyText}, #{replyer})
+  </insert>
+  
+  <select id="read" resultMap="replyResultMap">
+  	select rno, replyText, replyer, replydate, updatedate, deflag, bno from tbl_reply 
+  	where rno = #{rno}
+  </select>
+  
+  <delete id="delete">
+    update tbl_reply
+    set deflag = true 
+    where rno = #{rno}
+  </delete>
+  
+  <update id="update">
+  	update tbl_reply
+  	set replyText = #{replyText}
+  	where rno = #{rno}
+  </update>
+  
+  <select id="listOfBoard" resultType="org.zerock.dto.ReplyDTO">  
+  	select 
+  		rno, 
+  		replyText, 
+  		replyer, 
+  		replydate as replyDate, 
+  		updatedate as updateDate, 
+  		deflag, 
+  		bno 
+  	from tbl_reply
+  	where bno = #{bno} and rno>0 and deflag = false
+  	order by rno asc
+  	limit #{size} offset #{skip}
+  </select>
+  
+  <select id="countOfBoard" resultType="int">
+  	select count(rno) from tbl_reply
+  	where bno = #{bno} and rno > 0 and deflag = false
+  </select>
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

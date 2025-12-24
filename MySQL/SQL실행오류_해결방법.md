@@ -152,3 +152,4 @@ mysql -h 127.0.0.1 -P 3306 -u root -p < database_exports/springdb_structure_safe
 어떤 오류 메시지가 나타나는지 알려주시면 더 정확히 도와드릴 수 있습니다!
 
 
+

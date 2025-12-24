@@ -174,3 +174,4 @@ cp -r ~/Library/Application\ Support/MySQL/Workbench/sql_history ./
 
 
 
+
