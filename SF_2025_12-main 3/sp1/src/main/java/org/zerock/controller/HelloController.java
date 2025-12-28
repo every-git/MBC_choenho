@@ -35,14 +35,14 @@ public class HelloController {
 	 *      : /WEB-INF/views/sample/ex2.jsp
 	 */
 			
-	@PreAuthorize("HasRole('USER')")
+	@PreAuthorize("hasAnyRole('USER', 'MANAGER', 'ADMIN')")
 	//localhost:8080/sample/ex1 -> void : /WEB-INF/views/sample/ex1.jsp
 	@GetMapping("/ex1")  //sample/ex1
 	public void ex1() {
 		log.info("/sample/ex1");
 	}
 
-	@PreAuthorize("HasRole('MANAGER')")
+	@PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
 	//localhost:8080/sample/ex2 -> String : /WEB-INF/views/sample/success.jsp
 	@GetMapping("/ex2")
 	public String ex2() {
@@ -50,13 +50,14 @@ public class HelloController {
 		return "sample/success";
 	}
 	
-	@PreAuthorize("HasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	//localhost:8080/sample/ex3 -> redirect -> localhost:8080/sample/ex3re
 	@GetMapping("/ex3")
 	public String ex3() {
 		return "redirect:/sample/ex3re";
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	//localhost:8080/sample/ex3re -> String ->  /WEB-INF/views/sample/ex3Result.jsp
 	@GetMapping("/ex3re")
 	public String ex3Re() {

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +13,15 @@
   
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function logout(event) {
+      if (event) {
+        event.preventDefault();
+      }
+      document.getElementById('logoutForm').submit();
+      return false;
+    }
+  </script>
 </head>
 <body>
 
@@ -24,7 +35,10 @@
         <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
       </ul>
       <span class="navbar-text">
-        Logged in as <strong>admin</strong> | <a href="#" class="text-white text-decoration-underline">Logout</a>
+        Logged in as <strong>admin</strong> | 
+        <a href="javascript:void(0);" onclick="logout(event); return false;" class="text-white text-decoration-underline" style="cursor: pointer;">Logout</a>
+        <form id="logoutForm" action="<c:url value='/logout' />" method="post" style="display: none;">
+        </form>
       </span>
     </div>
   </nav>

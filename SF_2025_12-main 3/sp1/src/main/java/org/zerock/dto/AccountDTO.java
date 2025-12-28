@@ -1,4 +1,4 @@
-package org.zerock.account;
+package org.zerock.dto;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.GrantedAuthority;
@@ -8,18 +8,23 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
-import org.zerock.dto.AccountRole;
 
 import lombok.Data;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class AccountDTO implements UserDetails{
     
     private String uid;
     private String upw;
     private String uname;
     private String email;
-    private List<String> roleNames;
+    private List<String> roleNames = new ArrayList<>();
 
     public void addRole(AccountRole role) {
         if (roleNames == null) {

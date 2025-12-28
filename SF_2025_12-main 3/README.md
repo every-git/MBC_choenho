@@ -40,3 +40,19 @@ references tbl_board(bno);
 -- 📌 5) 인텍스 설정
 create index idx_reply_board on tbl_reply(bno desc, rno asc);
 
+-- 📌 6) tbl_account 테이블 생성
+create table tbl_account(
+    uid varchar(50) primary key,
+    upw varchar(200) not null,
+    uname varchar(100) not null,
+    email varchar(200) not null
+);
+
+-- 📌 7) tbl_account_roles 테이블 생성
+create table tbl_account_roles(
+    uid varchar(50) not null,
+    role varchar(50) not null,
+    primary key (uid, role),
+    foreign key (uid) references tbl_account(uid) on delete cascade
+);
+
