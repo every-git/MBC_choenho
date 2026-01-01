@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	
 	xsi:schemaLocation="
@@ -13,6 +14,9 @@
 	
 		http://www.springframework.org/schema/tx
 		https://www.springframework.org/schema/tx/spring-tx.xsd
+		
+		http://www.springframework.org/schema/aop
+		https://www.springframework.org/schema/aop/spring-aop.xsd
 		
 		http://mybatis.org/schema/mybatis-spring
 		http://mybatis.org/schema/mybatis-spring.xsd ">
@@ -48,7 +52,11 @@
 	
 	<mybatis-spring:scan base-package="org.zerock.mapper"/>
 	
+	<context:component-scan base-package="org.zerock.service" />
 	<context:component-scan base-package="org.zerock.security" />
+	<context:component-scan base-package="org.zerock.aop" />
+	
+	<aop:aspectj-autoproxy />
 	
 </beans>
 

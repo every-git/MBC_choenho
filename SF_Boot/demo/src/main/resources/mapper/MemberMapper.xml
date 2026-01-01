@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.MemberMapper">
+
+    <insert id="insert" parameterType="MemberDTO" useGeneratedKeys="true" keyProperty="memberId">
+        INSERT INTO member (name, age, address, phone)
+        VALUES (#{name}, #{age}, #{address}, #{phone})
+    </insert>
+
+    <select id="findById" parameterType="int" resultType="MemberDTO">
+        SELECT * FROM member WHERE member_id = #{memberId}
+    </select>
+
+    <select id="findAll" resultType="MemberDTO">
+        SELECT * FROM member
+    </select>
+
+    <update id="update" parameterType="MemberDTO">
+        UPDATE member 
+        SET name = #{name}, age = #{age}, address = #{address}, 
+        phone = #{phone} WHERE member_id = #{memberId}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM member WHERE member_id = #{memberId}
+    </delete>
+    
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.MemberMapper">
+
+    <!-- 모든 회원 조회 (최신 가입순) -->
+    <select id="selectAllMembers" resultType="MemberDTO"> SELECT id, password, name, email, role,
+        phone, regdate, enabled FROM members ORDER BY regdate DESC </select>
+
+    <!-- 아이디로 회원 조회 -->
+    <select id="getMember" parameterType="String" resultType="MemberDTO"> SELECT id, password, name,
+        email, role, phone, regdate, enabled FROM members WHERE id = #{id} </select>
+
+    <!-- 아이디 중복 확인 -->
+    <select id="confirmID" parameterType="String" resultType="int"> SELECT COUNT(*) FROM members
+        WHERE id = #{id} </select>
+
+    <!-- 회원 등록 -->
+    <insert id="insertMember" parameterType="MemberDTO"> INSERT INTO members (id, password, name,
+        email, role, phone, enabled) VALUES (#{id}, #{password}, #{name}, #{email}, #{role},
+        #{phone}, true) </insert>
+
+    <!-- 회원 권한 등록 -->
+    <insert id="insertMemberRole"> INSERT INTO member_roles (id, role) VALUES (#{id}, #{role}) </insert>
+
+    <!-- 회원 정보 수정 -->
+    <update id="updateMember" parameterType="MemberDTO"> UPDATE members SET email = #{email}, phone
+        = #{phone} WHERE id = #{id} </update>
+
+    <!-- 비밀번호 업데이트 -->
+    <update id="updatePassword"> UPDATE members SET password = #{password} WHERE id = #{id} </update>
+
+    <!-- 회원 삭제 -->
+    <delete id="deleteMember" parameterType="String"> DELETE FROM members WHERE id = #{id} </delete>
+
+</mapper>

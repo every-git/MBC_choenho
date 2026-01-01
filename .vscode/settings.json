@@ -5,7 +5,8 @@
   "java.project.outputPath": "JAVA/**/bin",
   "java.project.referencedLibraries": [],
   "java.configuration.updateBuildConfiguration": "automatic",
-  "java.eclipse.downloadSources": true
+  "java.eclipse.downloadSources": true,
+  "java.compile.nullAnalysis.mode": "automatic"
 }
 
 

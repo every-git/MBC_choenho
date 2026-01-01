@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- snake_case 컬럼명을 camelCase 프로퍼티로 자동 매핑 -->
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+        <!-- null 값 처리 -->
+        <setting name="jdbcTypeForNull" value="NULL" />
+        <!-- 로깅 -->
+        <setting name="logImpl" value="LOG4J2" />
+    </settings>
+
+    <typeAliases>
+        <package name="org.zerock.dto" />
+    </typeAliases>
+</configuration>
