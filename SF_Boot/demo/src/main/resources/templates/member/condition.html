@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>조건문 예제</title>
+</head>
+<body>
+    <h1>타임리프 조건문 예제</h1>
+    
+    <h2>1. th:if - 조건이 true일 때 표시</h2>
+    <p th:if="${age >= 20}">성인입니다.</p>
+    <p th:if="${age < 20}">미성년자입니다.</p>
+    
+    <h2>2. th:unless - 조건이 false일 때 표시</h2>
+    <p th:unless="${age >= 20}">미성년자입니다.</p>
+    
+    <h2>3. th:if와 th:unless 함께 사용</h2>
+    <div th:if="${isAdmin}">
+        <p>관리자입니다.</p>
+    </div>
+    <div th:unless="${isAdmin}">
+        <p>일반 사용자입니다.</p>
+    </div>
+    
+    <h2>4. 조건문과 반복문 함께 사용</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>이름</th>
+            <th>나이</th>
+            <th>상태</th>
+        </tr>
+        <tr th:each="member : ${members}" th:if="${member.age >= 25}">
+            <td th:text="${member.memberId}">1</td>
+            <td th:text="${member.name}">이름</td>
+            <td th:text="${member.age}">0</td>
+            <td>
+                <span th:if="${member.age >= 30}">시니어</span>
+                <span th:unless="${member.age >= 30}">주니어</span>
+            </td>
+        </tr>
+    </table>
+    
+    <h2>5. 점수에 따른 등급 표시</h2>
+    <p th:if="${score >= 90}">A등급</p>
+    <p th:if="${score >= 80 and score < 90}">B등급</p>
+    <p th:if="${score >= 70 and score < 80}">C등급</p>
+    <p th:if="${score < 70}">D등급</p>
+    
+    <h2>6. 링크로 돌아가기</h2>
+    <a th:href="@{/member/list}">목록으로</a>
+</body>
+</html>

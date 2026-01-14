@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대철이제철 게시판 - 프로젝트 발표</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --toss-blue: #0064FF;
+            --toss-blue-light: #4B9CFF;
+            --toss-black: #191F28;
+            --toss-gray-900: #333D4B;
+            --toss-gray-700: #4E5968;
+            --toss-gray-500: #8B95A1;
+            --toss-gray-300: #D1D6DB;
+            --toss-gray-100: #F2F4F6;
+            --toss-white: #FFFFFF;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+            --shadow-3d: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--toss-white);
+            color: var(--toss-black);
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 60px 100px;
+            display: none;
+            flex-direction: column;
+            background: var(--toss-white);
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .slide.active {
+            display: flex;
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* ===== Slide 1: Title ===== */
+        .slide-title {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(180deg, #F8FAFF 0%, #FFFFFF 100%);
+        }
+        
+        .title-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--toss-gray-100);
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--toss-gray-700);
+            margin-bottom: 32px;
+        }
+        
+        .title-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: #22C55E;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .slide-title h1 {
+            font-size: 72px;
+            font-weight: 800;
+            color: var(--toss-black);
+            letter-spacing: -3px;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+        
+        .slide-title h1 span {
+            background: linear-gradient(135deg, var(--toss-blue) 0%, #6366F1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .slide-title .subtitle {
+            font-size: 24px;
+            color: var(--toss-gray-500);
+            font-weight: 400;
+            margin-bottom: 60px;
+        }
+        
+        .tech-pills {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .tech-pill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 24px;
+            background: var(--toss-white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--toss-gray-900);
+            transition: all 0.3s ease;
+        }
+        
+        .tech-pill:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .tech-pill img, .tech-pill i {
+            width: 24px;
+            height: 24px;
+            font-size: 24px;
+        }
+        
+        /* ===== Common Header ===== */
+        .slide-header {
+            margin-bottom: 60px;
+        }
+        
+        .slide-header .eyebrow {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--toss-blue);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        
+        .slide-header h2 {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--toss-black);
+            letter-spacing: -2px;
+        }
+        
+        .page-indicator {
+            position: absolute;
+            top: 40px;
+            right: 60px;
+            font-size: 14px;
+            color: var(--toss-gray-500);
+        }
+        
+        /* ===== Slide 2: Tech Stack ===== */
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            flex: 1;
+            align-content: start;
+        }
+        
+        .stack-card {
+            background: var(--toss-white);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--toss-gray-100);
+        }
+        
+        .stack-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-3d);
+        }
+        
+        .stack-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        .stack-icon img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+        
+        .stack-icon i {
+            font-size: 36px;
+        }
+        
+        .stack-info h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--toss-black);
+            margin-bottom: 4px;
+        }
+        
+        .stack-info .version {
+            font-size: 14px;
+            color: var(--toss-gray-500);
+        }
+        
+        .stack-card.primary {
+            background: linear-gradient(135deg, var(--toss-blue) 0%, #4F46E5 100%);
+            border: none;
+        }
+        
+        .stack-card.primary .stack-icon {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .stack-card.primary .stack-icon i,
+        .stack-card.primary .stack-info h4,
+        .stack-card.primary .stack-info .version {
+            color: var(--toss-white);
+        }
+        
+        /* ===== Slide 3: Architecture ===== */
+        .architecture-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+        
+        .layer-flow {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .layer-card {
+            background: var(--toss-white);
+            border-radius: 24px;
+            padding: 32px 28px;
+            box-shadow: var(--shadow-md);
+            min-width: 200px;
+            text-align: center;
+            border: 1px solid var(--toss-gray-100);
+            position: relative;
+        }
+        
+        .layer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            border-radius: 24px 24px 0 0;
+        }
+        
+        .layer-card.controller::before { background: #3B82F6; }
+        .layer-card.service::before { background: #8B5CF6; }
+        .layer-card.mapper::before { background: #06B6D4; }
+        .layer-card.database::before { background: #10B981; }
+        
+        .layer-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 16px;
+            background: var(--toss-gray-100);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+        
+        .layer-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--toss-black);
+            margin-bottom: 16px;
+        }
+        
+        .layer-card ul {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .layer-card ul li {
+            font-size: 13px;
+            color: var(--toss-gray-700);
+            padding: 6px 0;
+            border-bottom: 1px solid var(--toss-gray-100);
+        }
+        
+        .layer-card ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            color: var(--toss-gray-300);
+        }
+        
+        .db-tables {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        
+        .db-table {
+            background: var(--toss-gray-100);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .db-table-header {
+            background: var(--toss-gray-900);
+            color: var(--toss-white);
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .db-table-body {
+            padding: 12px 16px;
+        }
+        
+        .db-table-body p {
+            font-size: 12px;
+            color: var(--toss-gray-700);
+            padding: 4px 0;
+        }
+        
+        /* ===== Slide 4: Code Flow ===== */
+        .flow-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 24px 32px;
+            background: var(--toss-white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--toss-gray-100);
+            transition: all 0.3s ease;
+        }
+        
+        .flow-step:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateX(8px);
+        }
+        
+        .step-number {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--toss-blue) 0%, #6366F1 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--toss-white);
+            font-size: 18px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--toss-black);
+            margin-bottom: 4px;
+        }
+        
+        .step-content p {
+            font-size: 14px;
+            color: var(--toss-gray-500);
+        }
+        
+        .step-code {
+            background: var(--toss-gray-900);
+            color: #22D3EE;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-family: 'SF Mono', 'Monaco', monospace;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+        
+        /* ===== Slide 5: Summary ===== */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            flex: 1;
+        }
+        
+        .summary-card {
+            background: var(--toss-white);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--toss-gray-100);
+        }
+        
+        .summary-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .summary-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .summary-icon.green { background: #DCFCE7; }
+        .summary-icon.blue { background: #DBEAFE; }
+        .summary-icon.purple { background: #EDE9FE; }
+        .summary-icon.orange { background: #FEF3C7; }
+        
+        .summary-card h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--toss-black);
+        }
+        
+        .summary-list {
+            list-style: none;
+        }
+        
+        .summary-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--toss-gray-700);
+            border-bottom: 1px solid var(--toss-gray-100);
+        }
+        
+        .summary-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .check-icon {
+            width: 20px;
+            height: 20px;
+            background: #22C55E;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+        
+        /* ===== Navigation ===== */
+        .nav {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--toss-white);
+            border-radius: 100px;
+            box-shadow: var(--shadow-lg);
+            z-index: 100;
+        }
+        
+        .nav button {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background: var(--toss-gray-100);
+            color: var(--toss-gray-700);
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav button:hover {
+            background: var(--toss-blue);
+            color: var(--toss-white);
+        }
+        
+        .nav .page-dots {
+            display: flex;
+            gap: 8px;
+            padding: 0 12px;
+        }
+        
+        .nav .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--toss-gray-300);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav .dot.active {
+            width: 24px;
+            border-radius: 4px;
+            background: var(--toss-blue);
+        }
+        
+        /* 3D Icon Effects */
+        .icon-3d {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(145deg, #ffffff, #e6e6e6);
+            border-radius: 12px;
+            box-shadow: 
+                6px 6px 12px #d9d9d9,
+                -6px -6px 12px #ffffff,
+                inset 0 0 0 1px rgba(255,255,255,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- Slide 1: Title -->
+        <div class="slide slide-title active" data-slide="1" style="position: relative;">
+            <div class="title-badge">
+                <span class="dot"></span>
+                Spring Framework Project
+            </div>
+            <h1>대철이제철<br/><span>게시판 시스템</span></h1>
+            <p class="subtitle">Spring Framework 기반 MVC 웹 애플리케이션</p>
+            <div class="tech-pills">
+                <div class="tech-pill">
+                    <i class="devicon-java-plain colored"></i>
+                    Java 21
+                </div>
+                <div class="tech-pill">
+                    <i class="devicon-spring-plain colored"></i>
+                    Spring 6.2.1
+                </div>
+                <div class="tech-pill">
+                    <img src="https://cdn.simpleicons.org/springsecurity/6DB33F" alt="Security">
+                    Security 6.4.2
+                </div>
+                <div class="tech-pill">
+                    <img src="https://cdn.simpleicons.org/databricks/FF3621" alt="MyBatis" style="width:24px;height:24px;">
+                    MyBatis 3.5
+                </div>
+                <div class="tech-pill">
+                    <i class="devicon-mysql-plain colored"></i>
+                    MySQL 9.1
+                </div>
+            </div>
+            <!-- Mascot Image - Left of title -->
+            <img src="images/mascot1.png" alt="Mascot" style="position: absolute; top: 50%; left: 120px; transform: translateY(calc(-50% - 30px)); width: 550px; height: auto; opacity: 0.95;">
+        </div>
+
+        <!-- Slide 2: Tech Stack Connection -->
+        <div class="slide" data-slide="2" style="position: relative;">
+            <span class="page-indicator">2 / 5</span>
+            <div class="slide-header">
+                <p class="eyebrow">Tech Stack</p>
+                <h2>기술 스택 연결도</h2>
+            </div>
+            <!-- Mascot Image - Left bottom -->
+            <img src="images/mascot2.png" alt="Mascot" style="position: absolute; bottom: 100px; left: 60px; width: 500px; height: auto; opacity: 0.9;">
+            
+            <!-- Main Horizontal Flow - Centered -->
+            <div style="display: flex; align-items: flex-start; justify-content: center; gap: 20px; flex: 1; padding-top: 20px;">
+                <!-- Client -->
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 24px; background: #EFF6FF; border-radius: 20px; border: 2px solid #3B82F6; min-width: 130px;">
+                    <span style="font-size: 40px;">🌐</span>
+                    <div style="font-size: 16px; font-weight: 700; color: #1E40AF;">Client</div>
+                    <div style="font-size: 12px; color: #64748B; text-align: center;">JSP + JSTL<br/>Bootstrap + Axios</div>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; align-items: center; color: #94A3B8; margin-top: 50px;">
+                    <span style="font-size: 24px;">→</span>
+                    <span style="font-size: 11px;">HTTP</span>
+                </div>
+                
+                <!-- Tomcat -->
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 24px; background: #FEF3C7; border-radius: 20px; border: 2px solid #F59E0B; min-width: 130px;">
+                    <i class="devicon-tomcat-line colored" style="font-size: 40px;"></i>
+                    <div style="font-size: 16px; font-weight: 700; color: #92400E;">Tomcat</div>
+                    <div style="font-size: 12px; color: #64748B;">v10.1 WAS</div>
+                </div>
+                
+                <div style="color: #94A3B8; font-size: 24px; margin-top: 50px;">→</div>
+                
+                <!-- Spring + Security (Vertical) -->
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 24px 28px; background: linear-gradient(135deg, #0064FF, #4F46E5); border-radius: 20px; box-shadow: 0 8px 24px rgba(0,100,255,0.3); min-width: 150px;">
+                        <i class="devicon-spring-plain" style="font-size: 40px; color: white;"></i>
+                        <div style="font-size: 18px; font-weight: 700; color: white;">Spring</div>
+                        <div style="font-size: 12px; color: rgba(255,255,255,0.8);">v6.2.1 MVC/DI/AOP</div>
+                    </div>
+                    <div style="color: #94A3B8; font-size: 18px;">↓</div>
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 14px 18px; background: #DCFCE7; border-radius: 14px; border: 2px solid #22C55E;">
+                        <img src="https://cdn.simpleicons.org/springsecurity/22C55E" alt="Security" style="width: 28px; height: 28px;">
+                        <div>
+                            <div style="font-size: 14px; font-weight: 600; color: #166534;">Security 6.4</div>
+                            <div style="font-size: 11px; color: #64748B;">인증/인가/BCrypt</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="color: #94A3B8; font-size: 24px; margin-top: 50px;">→</div>
+                
+                <!-- MyBatis + HikariCP (Vertical) -->
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 24px 28px; background: #F3E8FF; border-radius: 20px; border: 2px solid #A855F7; min-width: 150px;">
+                        <img src="https://cdn.simpleicons.org/databricks/9333EA" alt="MyBatis" style="width: 40px; height: 40px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #6B21A8;">MyBatis</div>
+                        <div style="font-size: 12px; color: #64748B;">v3.5 SQL Mapper</div>
+                    </div>
+                    <div style="color: #94A3B8; font-size: 18px;">↓</div>
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 14px 18px; background: #FEE2E2; border-radius: 14px; border: 2px solid #EF4444;">
+                        <span style="font-size: 24px;">⚡</span>
+                        <div>
+                            <div style="font-size: 14px; font-weight: 600; color: #991B1B;">HikariCP 6.2</div>
+                            <div style="font-size: 11px; color: #64748B;">Connection Pool</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; align-items: center; color: #94A3B8; margin-top: 50px;">
+                    <span style="font-size: 24px;">→</span>
+                    <span style="font-size: 11px;">JDBC</span>
+                </div>
+                
+                <!-- MySQL -->
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 24px; background: #E0F2FE; border-radius: 20px; border: 2px solid #0EA5E9; min-width: 130px;">
+                    <i class="devicon-mysql-plain colored" style="font-size: 40px;"></i>
+                    <div style="font-size: 16px; font-weight: 700; color: #0369A1;">MySQL</div>
+                    <div style="font-size: 12px; color: #64748B;">v9.1 RDBMS</div>
+                </div>
+            </div>
+            
+            <!-- Bottom: Dev Environment -->
+            <div style="display: flex; justify-content: center; gap: 20px; padding: 18px; background: #F8FAFC; border-radius: 16px;">
+                <div style="font-size: 13px; font-weight: 600; color: #64748B; display: flex; align-items: center; margin-right: 16px;">개발 환경</div>
+                <div style="display: flex; align-items: center; gap: 8px; padding: 10px 18px; background: white; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                    <i class="devicon-java-plain colored" style="font-size: 24px;"></i>
+                    <span style="font-size: 14px; font-weight: 500;">Java 21</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; padding: 10px 18px; background: white; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                    <i class="devicon-apache-plain colored" style="font-size: 24px;"></i>
+                    <span style="font-size: 14px; font-weight: 500;">Maven 3.x</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; padding: 10px 18px; background: white; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                    <img src="https://cdn.simpleicons.org/eclipseide/2C2255" alt="Eclipse" style="width: 24px; height: 24px;">
+                    <span style="font-size: 14px; font-weight: 500;">Eclipse IDE</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; padding: 10px 18px; background: white; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                    <img src="https://cdn.simpleicons.org/json/000000" alt="Jackson" style="width: 24px; height: 24px;">
+                    <span style="font-size: 14px; font-weight: 500;">Jackson</span>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- Slide 3: Architecture (Detailed) -->
+        <div class="slide" data-slide="3" style="position: relative;">
+            <span class="page-indicator">3 / 5</span>
+            <div class="slide-header">
+                <p class="eyebrow">Architecture</p>
+                <h2>레이어드 아키텍처</h2>
+            </div>
+            <!-- Mascot Image - Right top -->
+            <img src="images/mascot3.png" alt="Mascot" style="position: absolute; top: 60px; right: 60px; width: 480px; height: auto; opacity: 0.9;">
+            
+            <!-- Layered Architecture Flow - Centered -->
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; gap: 16px;">
+                
+                <!-- Main Layer Cards -->
+                <div style="display: flex; align-items: stretch; justify-content: center; gap: 14px;">
+                    
+                    <!-- Controller Layer -->
+                    <div style="width: 200px; background: linear-gradient(180deg, #EFF6FF 0%, #DBEAFE 100%); border-radius: 16px; padding: 16px; border: 2px solid #3B82F6; position: relative;">
+                        <div style="position: absolute; top: -10px; left: 14px; background: #3B82F6; color: white; padding: 3px 10px; border-radius: 8px; font-size: 10px; font-weight: 600;">PRESENTATION</div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px; margin-top: 4px;">
+                            <div style="width: 32px; height: 32px; background: #3B82F6; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                            </div>
+                            <div>
+                                <div style="font-size: 15px; font-weight: 700; color: #1E40AF;">Controller</div>
+                                <div style="font-size: 9px; color: #64748B;">@RequestMapping</div>
+                            </div>
+                        </div>
+                        <div style="background: white; border-radius: 8px; padding: 8px; font-size: 11px; line-height: 1.5;">
+                            <div style="color: #1E40AF; font-weight: 500;">• BoardController</div>
+                            <div style="color: #1E40AF; font-weight: 500;">• MemberController</div>
+                            <div style="color: #1E40AF; font-weight: 500;">• ReplyController (REST)</div>
+                            <div style="color: #1E40AF; font-weight: 500;">• AdminController</div>
+                            <div style="color: #64748B; font-size: 10px; margin-top: 4px;">GET/POST 매핑, Model 바인딩</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; color: #CBD5E1; font-size: 22px;">→</div>
+                    
+                    <!-- Service Layer -->
+                    <div style="width: 200px; background: linear-gradient(180deg, #F3E8FF 0%, #E9D5FF 100%); border-radius: 16px; padding: 16px; border: 2px solid #A855F7; position: relative;">
+                        <div style="position: absolute; top: -10px; left: 14px; background: #A855F7; color: white; padding: 3px 10px; border-radius: 8px; font-size: 10px; font-weight: 600;">BUSINESS</div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px; margin-top: 4px;">
+                            <div style="width: 32px; height: 32px; background: #A855F7; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/></svg>
+                            </div>
+                            <div>
+                                <div style="font-size: 15px; font-weight: 700; color: #7C3AED;">Service</div>
+                                <div style="font-size: 9px; color: #64748B;">@Transactional</div>
+                            </div>
+                        </div>
+                        <div style="background: white; border-radius: 8px; padding: 8px; font-size: 11px; line-height: 1.5;">
+                            <div style="color: #7C3AED; font-weight: 500;">• BoardServiceImpl</div>
+                            <div style="color: #7C3AED; font-weight: 500;">• MemberServiceImpl</div>
+                            <div style="color: #7C3AED; font-weight: 500;">• ReplyServiceImpl</div>
+                            <div style="color: #7C3AED; font-weight: 500;">• CustomUserDetailsService</div>
+                            <div style="color: #64748B; font-size: 10px; margin-top: 4px;">비즈니스 로직, 트랜잭션 관리</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; color: #CBD5E1; font-size: 22px;">→</div>
+                    
+                    <!-- Mapper Layer -->
+                    <div style="width: 200px; background: linear-gradient(180deg, #ECFDF5 0%, #D1FAE5 100%); border-radius: 16px; padding: 16px; border: 2px solid #10B981; position: relative;">
+                        <div style="position: absolute; top: -10px; left: 14px; background: #10B981; color: white; padding: 3px 10px; border-radius: 8px; font-size: 10px; font-weight: 600;">PERSISTENCE</div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px; margin-top: 4px;">
+                            <div style="width: 32px; height: 32px; background: #10B981; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            </div>
+                            <div>
+                                <div style="font-size: 15px; font-weight: 700; color: #059669;">Mapper</div>
+                                <div style="font-size: 9px; color: #64748B;">MyBatis @Mapper</div>
+                            </div>
+                        </div>
+                        <div style="background: white; border-radius: 8px; padding: 8px; font-size: 11px; line-height: 1.5;">
+                            <div style="color: #059669; font-weight: 500;">• BoardMapper + XML</div>
+                            <div style="color: #059669; font-weight: 500;">• MemberMapper + XML</div>
+                            <div style="color: #059669; font-weight: 500;">• ReplyMapper + XML</div>
+                            <div style="color: #059669; font-weight: 500;">• @Param 동적 SQL</div>
+                            <div style="color: #64748B; font-size: 10px; margin-top: 4px;">SELECT/INSERT/UPDATE/DELETE</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; color: #CBD5E1; font-size: 22px;">→</div>
+                    
+                    <!-- Database Layer -->
+                    <div style="width: 200px; background: linear-gradient(180deg, #FEF3C7 0%, #FDE68A 100%); border-radius: 16px; padding: 16px; border: 2px solid #F59E0B; position: relative;">
+                        <div style="position: absolute; top: -10px; left: 14px; background: #F59E0B; color: white; padding: 3px 10px; border-radius: 8px; font-size: 10px; font-weight: 600;">DATABASE</div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px; margin-top: 4px;">
+                            <div style="width: 32px; height: 32px; background: #F59E0B; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                            </div>
+                            <div>
+                                <div style="font-size: 15px; font-weight: 700; color: #B45309;">MySQL 9.1</div>
+                                <div style="font-size: 9px; color: #64748B;">HikariCP Pool</div>
+                            </div>
+                        </div>
+                        <div style="background: white; border-radius: 8px; padding: 8px; font-size: 11px; line-height: 1.5;">
+                            <div style="color: #B45309; font-weight: 500;">• members (id, pw, name)</div>
+                            <div style="color: #B45309; font-weight: 500;">• board (seq, title, content)</div>
+                            <div style="color: #B45309; font-weight: 500;">• reply (rno, bno, replyer)</div>
+                            <div style="color: #B45309; font-weight: 500;">• member_roles (FK)</div>
+                            <div style="color: #64748B; font-size: 10px; margin-top: 4px;">논리적 삭제(delflag), hit 카운트</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cross-Cutting Concerns -->
+                <div style="display: flex; gap: 16px; margin-top: 8px;">
+                    <!-- Security -->
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 12px 20px; background: #DCFCE7; border-radius: 12px; border: 2px solid #22C55E;">
+                        <img src="https://cdn.simpleicons.org/springsecurity/22C55E" alt="Security" style="width: 24px; height: 24px;">
+                        <div>
+                            <div style="font-size: 13px; font-weight: 600; color: #166534;">Spring Security</div>
+                            <div style="font-size: 10px; color: #64748B;">인증/인가 · BCrypt · Remember-Me · RBAC</div>
+                        </div>
+                    </div>
+                    <!-- DTO -->
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 12px 20px; background: #FEF3C7; border-radius: 12px; border: 2px solid #F59E0B;">
+                        <span style="font-size: 20px;">📦</span>
+                        <div>
+                            <div style="font-size: 13px; font-weight: 600; color: #B45309;">DTO Layer</div>
+                            <div style="font-size: 10px; color: #64748B;">BoardDTO · MemberDTO · ReplyDTO · PageDTO</div>
+                        </div>
+                    </div>
+                    <!-- Logging -->
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 12px 20px; background: #FEE2E2; border-radius: 12px; border: 2px solid #EF4444;">
+                        <span style="font-size: 20px;">📝</span>
+                        <div>
+                            <div style="font-size: 13px; font-weight: 600; color: #991B1B;">Log4j2</div>
+                            <div style="font-size: 10px; color: #64748B;">DEBUG/INFO/ERROR 로깅</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- Slide 4: Configuration Files -->
+        <div class="slide" data-slide="4" style="position: relative;">
+            <span class="page-indicator">4 / 5</span>
+            <div class="slide-header">
+                <p class="eyebrow">Configuration</p>
+                <h2>설정 파일 역할</h2>
+            </div>
+            <!-- Mascot Image - Right side (above boxes) -->
+            <img src="images/mascot4.png" alt="Mascot" style="position: absolute; top: 50%; right: 60px; transform: translateY(-50%); width: 480px; height: auto; opacity: 0.9; z-index: 10;">
+            
+            <!-- Config Files Grid - Centered -->
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; gap: 16px;">
+                
+                <!-- Top Row -->
+                <div style="display: flex; gap: 16px;">
+                    
+                    <!-- web.xml -->
+                    <div style="width: 280px; background: linear-gradient(180deg, #FEF3C7 0%, #FDE68A 100%); border-radius: 16px; padding: 16px; border: 2px solid #F59E0B;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                            <div style="width: 36px; height: 36px; background: #F59E0B; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                <span style="color: white; font-size: 16px;">📄</span>
+                            </div>
+                            <div>
+                                <div style="font-size: 14px; font-weight: 700; color: #B45309;">web.xml</div>
+                                <div style="font-size: 10px; color: #64748B;">배포 서술자</div>
+                            </div>
+                        </div>
+                        <div style="background: white; border-radius: 10px; padding: 10px; font-size: 11px; line-height: 1.6;">
+                            <div style="color: #B45309; font-weight: 500;">• DispatcherServlet 등록</div>
+                            <div style="color: #B45309; font-weight: 500;">• CharacterEncodingFilter (UTF-8)</div>
+                            <div style="color: #B45309; font-weight: 500;">• Spring Security FilterChain</div>
+                            <div style="color: #B45309; font-weight: 500;">• ContextLoaderListener</div>
+                            <div style="color: #64748B; margin-top: 6px; font-size: 10px;">🎯 웹앱 초기화 및 필터 체인 설정</div>
+                        </div>
+                    </div>
+                    
+                    <!-- root-context.xml -->
+                    <div style="width: 280px; background: linear-gradient(180deg, #DCFCE7 0%, #BBF7D0 100%); border-radius: 16px; padding: 16px; border: 2px solid #22C55E;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                            <div style="width: 36px; height: 36px; background: #22C55E; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                <span style="color: white; font-size: 16px;">🌱</span>
+                            </div>
+                            <div>
+                                <div style="font-size: 14px; font-weight: 700; color: #166534;">root-context.xml</div>
+                                <div style="font-size: 10px; color: #64748B;">루트 컨텍스트</div>
+                            </div>
+                        </div>
+                        <div style="background: white; border-radius: 10px; padding: 10px; font-size: 11px; line-height: 1.6;">
+                            <div style="color: #166534; font-weight: 500;">• HikariCP DataSource 설정</div>
+                            <div style="color: #166534; font-weight: 500;">• SqlSessionFactory 빈 등록</div>
+                            <div style="color: #166534; font-weight: 500;">• MapperScan 설정</div>
+                            <div style="color: #166534; font-weight: 500;">• Transaction Manager</div>
+                            <div style="color: #64748B; margin-top: 6px; font-size: 10px;">🎯 데이터베이스 연결 및 트랜잭션</div>
+                        </div>
+                    </div>
+                    
+                    <!-- servlet-context.xml -->
+                    <div style="width: 280px; background: linear-gradient(180deg, #EFF6FF 0%, #DBEAFE 100%); border-radius: 16px; padding: 16px; border: 2px solid #3B82F6;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                            <div style="width: 36px; height: 36px; background: #3B82F6; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                <span style="color: white; font-size: 16px;">🎮</span>
+                            </div>
+                            <div>
+                                <div style="font-size: 14px; font-weight: 700; color: #1E40AF;">servlet-context.xml</div>
+                                <div style="font-size: 10px; color: #64748B;">서블릿 컨텍스트</div>
+                            </div>
+                        </div>
+                        <div style="background: white; border-radius: 10px; padding: 10px; font-size: 11px; line-height: 1.6;">
+                            <div style="color: #1E40AF; font-weight: 500;">• ViewResolver (JSP 경로)</div>
+                            <div style="color: #1E40AF; font-weight: 500;">• annotation-driven 활성화</div>
+                            <div style="color: #1E40AF; font-weight: 500;">• resources 정적 리소스</div>
+                            <div style="color: #1E40AF; font-weight: 500;">• component-scan (controller)</div>
+                            <div style="color: #64748B; margin-top: 6px; font-size: 10px;">🎯 MVC 웹 계층 설정</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bottom Row -->
+                <div style="display: flex; gap: 16px;">
+                    
+                    <!-- SecurityConfig.java -->
+                    <div style="width: 320px; background: linear-gradient(180deg, #F3E8FF 0%, #E9D5FF 100%); border-radius: 16px; padding: 16px; border: 2px solid #A855F7;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                            <div style="width: 36px; height: 36px; background: #A855F7; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                <span style="color: white; font-size: 16px;">🔒</span>
+                            </div>
+                            <div>
+                                <div style="font-size: 14px; font-weight: 700; color: #7C3AED;">SecurityConfig.java</div>
+                                <div style="font-size: 10px; color: #64748B;">Spring Security 설정 클래스</div>
+                            </div>
+                        </div>
+                        <div style="background: white; border-radius: 10px; padding: 10px; font-size: 11px; line-height: 1.6;">
+                            <div style="color: #7C3AED; font-weight: 500;">• @EnableWebSecurity, @EnableMethodSecurity</div>
+                            <div style="color: #7C3AED; font-weight: 500;">• SecurityFilterChain 빈 (URL 권한 설정)</div>
+                            <div style="color: #7C3AED; font-weight: 500;">• BCryptPasswordEncoder 빈</div>
+                            <div style="color: #7C3AED; font-weight: 500;">• formLogin(), logout(), rememberMe()</div>
+                            <div style="color: #64748B; margin-top: 6px; font-size: 10px;">🎯 인증/인가 및 RBAC(MEMBER/ADMIN) 설정</div>
+                        </div>
+                    </div>
+                    
+                    <!-- mybatis-config.xml -->
+                    <div style="width: 320px; background: linear-gradient(180deg, #FEE2E2 0%, #FECACA 100%); border-radius: 16px; padding: 16px; border: 2px solid #EF4444;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                            <div style="width: 36px; height: 36px; background: #EF4444; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                <span style="color: white; font-size: 16px;">🗃️</span>
+                            </div>
+                            <div>
+                                <div style="font-size: 14px; font-weight: 700; color: #991B1B;">mybatis-config.xml</div>
+                                <div style="font-size: 10px; color: #64748B;">MyBatis 설정</div>
+                            </div>
+                        </div>
+                        <div style="background: white; border-radius: 10px; padding: 10px; font-size: 11px; line-height: 1.6;">
+                            <div style="color: #991B1B; font-weight: 500;">• typeAliases (DTO 클래스 별칭)</div>
+                            <div style="color: #991B1B; font-weight: 500;">• mapperLocations (XML 경로)</div>
+                            <div style="color: #991B1B; font-weight: 500;">• settings (camelCase 매핑)</div>
+                            <div style="color: #991B1B; font-weight: 500;">• log4j2 로깅 연동</div>
+                            <div style="color: #64748B; margin-top: 6px; font-size: 10px;">🎯 SQL Mapper 및 DTO 바인딩 설정</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Config Flow Summary -->
+                <div style="display: flex; align-items: center; gap: 12px; padding: 14px 24px; background: #F8FAFC; border-radius: 14px; margin-top: 8px;">
+                    <span style="font-size: 12px; color: #64748B; font-weight: 600;">설정 로드 순서:</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="padding: 4px 10px; background: #FEF3C7; color: #B45309; border-radius: 6px; font-size: 11px; font-weight: 500;">web.xml</span>
+                        <span style="color: #CBD5E1;">→</span>
+                        <span style="padding: 4px 10px; background: #DCFCE7; color: #166534; border-radius: 6px; font-size: 11px; font-weight: 500;">root-context</span>
+                        <span style="color: #CBD5E1;">→</span>
+                        <span style="padding: 4px 10px; background: #F3E8FF; color: #7C3AED; border-radius: 6px; font-size: 11px; font-weight: 500;">Security</span>
+                        <span style="color: #CBD5E1;">→</span>
+                        <span style="padding: 4px 10px; background: #EFF6FF; color: #1E40AF; border-radius: 6px; font-size: 11px; font-weight: 500;">servlet-context</span>
+                        <span style="color: #CBD5E1;">→</span>
+                        <span style="padding: 4px 10px; background: #FEE2E2; color: #991B1B; border-radius: 6px; font-size: 11px; font-weight: 500;">MyBatis</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Slide 5: Summary -->
+        <div class="slide" data-slide="5" style="position: relative;">
+            <span class="page-indicator">5 / 5</span>
+            <div class="slide-header" style="display: flex; align-items: center; gap: 30px;">
+                <div>
+                    <p class="eyebrow">Summary</p>
+                    <h2>프로젝트 요약</h2>
+                </div>
+                <!-- 4 Mascot Characters - Right of title -->
+                <div style="display: flex; gap: 4px;">
+                    <img src="images/mascot1.png" alt="Mascot 1" style="width: 180px; height: auto;">
+                    <img src="images/mascot2.png" alt="Mascot 2" style="width: 180px; height: auto;">
+                    <img src="images/mascot3.png" alt="Mascot 3" style="width: 180px; height: auto;">
+                    <img src="images/mascot4.png" alt="Mascot 4" style="width: 180px; height: auto;">
+                </div>
+            </div>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-card-header">
+                        <div class="summary-icon green">✅</div>
+                        <h3>구현된 기능</h3>
+                    </div>
+                    <ul class="summary-list">
+                        <li><span class="check-icon">✓</span> 게시글 CRUD + 페이징</li>
+                        <li><span class="check-icon">✓</span> 댓글 REST API</li>
+                        <li><span class="check-icon">✓</span> 회원가입 / 로그인</li>
+                        <li><span class="check-icon">✓</span> Remember Me 기능</li>
+                        <li><span class="check-icon">✓</span> 관리자 페이지</li>
+                    </ul>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-card-header">
+                        <div class="summary-icon blue">🔒</div>
+                        <h3>보안 적용</h3>
+                    </div>
+                    <ul class="summary-list">
+                        <li><span class="check-icon">✓</span> Spring Security 인증</li>
+                        <li><span class="check-icon">✓</span> BCrypt 암호화</li>
+                        <li><span class="check-icon">✓</span> 권한 기반 접근 제어</li>
+                        <li><span class="check-icon">✓</span> SQL Injection 방지</li>
+                        <li><span class="check-icon">✓</span> 논리적 삭제 (delflag)</li>
+                    </ul>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-card-header">
+                        <div class="summary-icon purple">🏗️</div>
+                        <h3>아키텍처 특징</h3>
+                    </div>
+                    <ul class="summary-list">
+                        <li><span class="check-icon">✓</span> 표준 MVC 레이어 분리</li>
+                        <li><span class="check-icon">✓</span> Interface + Impl 패턴</li>
+                        <li><span class="check-icon">✓</span> MyBatis XML 매핑</li>
+                        <li><span class="check-icon">✓</span> HikariCP 커넥션 풀</li>
+                        <li><span class="check-icon">✓</span> Jakarta EE 9+ 지원</li>
+                    </ul>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-card-header">
+                        <div class="summary-icon orange">📋</div>
+                        <h3>운영 환경</h3>
+                    </div>
+                    <ul class="summary-list">
+                        <li><span class="check-icon">✓</span> Eclipse IDE</li>
+                        <li><span class="check-icon">✓</span> Apache Tomcat 10.1</li>
+                        <li><span class="check-icon">✓</span> Maven 빌드</li>
+                        <li><span class="check-icon">✓</span> Log4j2 로깅</li>
+                        <li><span class="check-icon">✓</span> Git 버전 관리</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav">
+        <button onclick="prevSlide()">←</button>
+        <div class="page-dots">
+            <div class="dot active" onclick="showSlide(1)"></div>
+            <div class="dot" onclick="showSlide(2)"></div>
+            <div class="dot" onclick="showSlide(3)"></div>
+            <div class="dot" onclick="showSlide(4)"></div>
+            <div class="dot" onclick="showSlide(5)"></div>
+        </div>
+        <button onclick="nextSlide()">→</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        function showSlide(n) {
+            if (n < 1) n = totalSlides;
+            if (n > totalSlides) n = 1;
+            
+            currentSlide = n;
+            
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === n - 1);
+            });
+            
+            const targetSlide = document.querySelector(`[data-slide="${n}"]`);
+            targetSlide.classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            }
+        });
+
+        // Touch swipe support
+        let touchStartX = 0;
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.touches[0].clientX;
+        });
+        
+        document.addEventListener('touchend', e => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) nextSlide();
+                else prevSlide();
+            }
+        });
+    </script>
+</body>
+</html>

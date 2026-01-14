@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>속성 설정 예제</title>
+</head>
+<body>
+    <h1>타임리프 속성 설정 예제</h1>
+    
+    <h2>1. th:attr - 일반 속성 설정</h2>
+    <div th:attr="id=${idValue}">ID 속성이 설정된 div</div>
+    
+    <h2>2. th:id - ID 속성</h2>
+    <div th:id="${idValue}">ID가 설정된 div</div>
+    
+    <h2>3. th:class - 클래스 속성</h2>
+    <div th:class="${className}">클래스가 설정된 div</div>
+    <div th:class="'active ' + ${className}">여러 클래스 결합</div>
+    
+    <h2>4. th:style - 스타일 속성</h2>
+    <div th:style="${styleValue}">스타일이 설정된 div</div>
+    <div th:style="'color: blue; font-size: 20px;'">직접 스타일 설정</div>
+    
+    <h2>5. th:href - 링크 속성</h2>
+    <a th:href="${hrefValue}">링크</a>
+    <a th:href="@{/member/list}">목록 링크</a>
+    
+    <h2>6. th:value - 값 속성</h2>
+    <input type="text" th:value="${message}" placeholder="값이 설정된 입력">
+    
+    <h2>7. th:src - 이미지 소스</h2>
+    <img th:src="@{/images/logo.png}" alt="로고">
+    
+    <h2>8. th:disabled - 비활성화 속성</h2>
+    <button th:disabled="${isActive == false}">비활성 버튼</button>
+    
+    <h2>9. th:checked - 체크박스/라디오</h2>
+    <input type="checkbox" th:checked="${isActive}"> 체크박스
+    
+    <h2>10. 여러 속성 동시 설정</h2>
+    <div th:attr="id=${idValue}, class=${className}, style=${styleValue}">
+        여러 속성이 설정된 div
+    </div>
+    
+    <h2>11. 링크로 돌아가기</h2>
+    <a th:href="@{/member/list}">목록으로</a>
+</body>
+</html>

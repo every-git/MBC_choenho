@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>변수 표현식 예제</title>
+</head>
+<body>
+    <h1>타임리프 변수 표현식 예제</h1>
+    
+    <h2>1. 기본 변수 표현식 (${...})</h2>
+    <p>이름: <span th:text="${name}">기본값</span></p>
+    <p>나이: <span th:text="${age}">0</span></p>
+    
+    <h2>2. 객체 속성 접근</h2>
+    <p>회원 ID: <span th:text="${member.memberId}">0</span></p>
+    <p>회원 이름: <span th:text="${member.name}">이름</span></p>
+    <p>회원 나이: <span th:text="${member.age}">0</span></p>
+    <p>회원 주소: <span th:text="${member.address}">주소</span></p>
+    <p>회원 전화번호: <span th:text="${member.phone}">전화번호</span></p>
+    
+    <h2>3. 날짜/시간 포맷팅</h2>
+    <p>기본: <span th:text="${localDateTime}"></span></p>
+    <p>포맷 적용: <span th:text="${#temporals.format(localDateTime, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
+    
+    <h2>4. 변수 표현식과 텍스트 결합</h2>
+    <p th:text="'안녕하세요, ' + ${name} + '님'">안녕하세요, 이름님</p>
+    <p th:text="|안녕하세요, ${name}님|">안녕하세요, 이름님</p>
+    
+    <h2>5. 링크로 돌아가기</h2>
+    <a th:href="@{/member/list}">목록으로</a>
+</body>
+</html>

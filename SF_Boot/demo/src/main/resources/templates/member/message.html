@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>메시지 표현식 예제</title>
+</head>
+<body>
+    <h1>타임리프 메시지 표현식 예제 (#{...})</h1>
+    
+    <h2>1. 기본 메시지 표현식</h2>
+    <p th:text="#{welcome.message}">환영합니다!</p>
+    
+    <h2>2. 메시지와 변수 결합</h2>
+    <p th:text="#{user.name} + ': ' + ${name}">사용자 이름: 이름</p>
+    <p th:text="|#{user.name}: ${name}|">사용자 이름: 이름</p>
+    
+    <h2>3. 메시지에 파라미터 전달</h2>
+    <p>이름: <span th:text="${name}">이름</span></p>
+    <p>나이: <span th:text="${age}">0</span></p>
+    
+    <h2>4. 버튼 메시지</h2>
+    <button th:text="#{button.save}">저장</button>
+    <button th:text="#{button.delete}">삭제</button>
+    <button th:text="#{button.modify}">수정</button>
+    
+    <h2>5. 라벨 메시지</h2>
+    <table border="1">
+        <tr>
+            <th th:text="#{label.member.id}">회원 ID</th>
+            <th th:text="#{label.member.name}">이름</th>
+            <th th:text="#{label.member.age}">나이</th>
+            <th th:text="#{label.member.address}">주소</th>
+            <th th:text="#{label.member.phone}">전화번호</th>
+        </tr>
+    </table>
+    
+    <h2>6. 메시지와 변수 표현식 함께 사용</h2>
+    <p th:text="|#{welcome.message} ${name}님|">환영합니다! 이름님</p>
+    
+    <h2>7. 링크로 돌아가기</h2>
+    <a th:href="@{/member/list}">목록으로</a>
+</body>
+</html>

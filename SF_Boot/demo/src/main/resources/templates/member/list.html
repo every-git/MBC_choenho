@@ -2,132 +2,40 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원 관리</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>회원 목록</title>
 </head>
 <body>
-    <!-- Toast Message -->
-    <div th:if="${message}" class="toast" th:tex정t="${message}"></div>
-
-    <div class="container">
-        <div class="card">
-            <!-- Header -->
-            <div class="page-header">
-                <div>
-                    <h1 class="page-title">회원 목록</h1>
-                    <p class="page-subtitle">전체 회원 정보를 조회하고 관리합니다.</p>
-                </div>
-                <a th:href="@{/member/register}" class="btn btn-primary">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M12 5v14M5 12h14"/>
-                    </svg>
-                    신규 등록
+    <h1>회원 목록</h1>
+    <div style="margin-bottom: 10px;">
+        <a th:href="@{/member/insert}">
+            <button type="button">회원 등록</button>
+        </a>
+    </div>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>이름</th>
+            <th>나이</th>
+            <th>주소</th>
+            <th>전화번호</th>
+            <th>관리</th>
+        </tr>
+        <tr th:each="member : ${list}">
+            <td th:text="${member.memberId}">1</td>
+            <td th:text="${member.name}">2</td>
+            <td th:text="${member.age}">3</td>
+            <td th:text="${member.address}">4</td>
+            <td th:text="${member.phone}">5</td>
+            <td>
+                <a th:href="@{/member/update/{id}(id=${member.memberId})}">
+                    <button type="button">수정</button>
                 </a>
-            </div>
-
-            <!-- Table -->
-            <div class="table-container">
-                <!-- Empty State -->
-                <div th:if="${#lists.isEmpty(list)}" class="empty-state">
-                    <div class="empty-state-icon">📋</div>
-                    <p class="empty-state-text">등록된 회원이 없습니다.</p>
-                    <a th:href="@{/member/register}" class="btn btn-primary">첫 회원 등록하기</a>
-                </div>
-
-                <!-- Table -->
-                <table th:unless="${#lists.isEmpty(list)}">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>이름</th>
-                            <th>나이</th>
-                            <th>주소</th>
-                            <th>연락처</th>
-                            <th>관리</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="member : ${list}">
-                            <td th:text="${member.memberId}">1</td>
-                            <td>
-                                <a th:href="@{/member/view/{id}(id=${member.memberId})}" 
-                                   th:text="${member.name}" 
-                                   class="member-name">홍길동</a>
-                            </td>
-                            <td th:text="${member.age}">25</td>
-                            <td th:text="${member.address}">서울시 강남구</td>
-                            <td th:text="${member.phone}">010-1234-5678</td>
-                            <td>
-                                <div class="table-actions">
-                                    <a th:href="@{/member/modify/{id}(id=${member.memberId})}" 
-                                       class="btn btn-secondary btn-sm">수정</a>
-                                    <button type="button" 
-                                            class="btn btn-danger btn-sm" 
-                                            th:data-id="${member.memberId}"
-                                            th:data-name="${member.name}"
-                                            onclick="showDeleteModal(this)">삭제</button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <!-- Delete Confirmation Modal -->
-    <div id="deleteModal" class="modal-overlay">
-        <div class="modal">
-            <div class="modal-icon">⚠️</div>
-            <h3 class="modal-title">회원 삭제</h3>
-            <p class="modal-message">
-                <span id="deleteName"></span> 회원을 정말 삭제하시겠습니까?<br>
-                <small style="color: var(--error);">이 작업은 되돌릴 수 없습니다.</small>
-            </p>
-            <div class="modal-actions">
-                <button type="button" class="btn btn-secondary" onclick="closeDeleteModal()">취소</button>
-                <form id="deleteForm" th:action="@{/member/delete/0}" method="post" style="display:inline;">
-                    <button type="submit" class="btn btn-danger">삭제</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script th:inline="javascript">
-        // Toast auto-hide
-        document.addEventListener('DOMContentLoaded', function() {
-            const toast = document.querySelector('.toast');
-            if (toast) {
-                setTimeout(() => toast.remove(), 3000);
-            }
-        });
-
-        // Delete Modal
-        function showDeleteModal(btn) {
-            const id = btn.dataset.id;
-            const name = btn.dataset.name;
-            document.getElementById('deleteName').textContent = name;
-            document.getElementById('deleteForm').action = '/member/delete/' + id;
-            document.getElementById('deleteModal').classList.add('active');
-        }
-
-        function closeDeleteModal() {
-            document.getElementById('deleteModal').classList.remove('active');
-        }
-
-        // Close modal on overlay click
-        document.getElementById('deleteModal').addEventListener('click', function(e) {
-            if (e.target === this) closeDeleteModal();
-        });
-
-        // Close modal on ESC key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeDeleteModal();
-        });
-    </script>
+                <a th:href="@{/member/delete/{id}(id=${member.memberId})}" 
+                   th:onclick="|return confirm('정말 삭제하시겠습니까?')|">
+                    <button type="button">삭제</button>
+                </a>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>

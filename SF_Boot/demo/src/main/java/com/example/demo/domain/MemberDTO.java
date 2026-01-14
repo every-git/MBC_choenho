@@ -1,12 +1,16 @@
 package com.example.demo.domain;
 
-import lombok.Setter;
-import lombok.Getter;
-import lombok.Builder;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
+/*
+create table member(
+	member_id int auto_increment primary key,
+    name varchar(50) not null,
+    age int,
+    address varchar(100),
+    phone varchar(20)
+);
+ */
 @Getter
 @Setter
 @Builder
@@ -14,7 +18,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class MemberDTO {
-
     private int memberId;
     private String name;
     private int age;

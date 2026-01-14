@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>연산자 예제</title>
+</head>
+<body>
+    <h1>타임리프 연산자 예제</h1>
+    
+    <h2>1. 산술 연산자</h2>
+    <p>num1 = <span th:text="${num1}">0</span>, num2 = <span th:text="${num2}">0</span></p>
+    <p>덧셈: <span th:text="${num1 + num2}">0</span></p>
+    <p>뺄셈: <span th:text="${num1 - num2}">0</span></p>
+    <p>곱셈: <span th:text="${num1 * num2}">0</span></p>
+    <p>나눗셈: <span th:text="${num1 / num2}">0</span></p>
+    <p>나머지: <span th:text="${num1 % num2}">0</span></p>
+    
+    <h2>2. 비교 연산자</h2>
+    <p th:if="${num1 > num2}">num1이 num2보다 큽니다.</p>
+    <p th:if="${num1 < num2}">num1이 num2보다 작습니다.</p>
+    <p th:if="${num1 >= num2}">num1이 num2보다 크거나 같습니다.</p>
+    <p th:if="${num1 <= num2}">num1이 num2보다 작거나 같습니다.</p>
+    <p th:if="${num1 == num2}">num1과 num2가 같습니다.</p>
+    <p th:if="${num1 != num2}">num1과 num2가 다릅니다.</p>
+    
+    <h2>3. 논리 연산자</h2>
+    <p th:if="${age >= 20 and age < 30}">20대입니다.</p>
+    <p th:if="${age < 20 or age >= 30}">20대가 아닙니다.</p>
+    <p th:if="${!isActive}">비활성 상태입니다.</p>
+    
+    <h2>4. 조건 연산자 (삼항 연산자)</h2>
+    <p>상태: <span th:text="${isActive ? '활성' : '비활성'}">상태</span></p>
+    <p>등급: <span th:text="${age >= 30 ? '시니어' : '주니어'}">등급</span></p>
+    
+    <h2>5. 문자열 연산</h2>
+    <p>이름: <span th:text="${name}">이름</span></p>
+    <p>인사말: <span th:text="'안녕하세요, ' + ${name} + '님'">인사말</span></p>
+    <p>리터럴 대체: <span th:text="|안녕하세요, ${name}님|">인사말</span></p>
+    
+    <h2>6. 링크로 돌아가기</h2>
+    <a th:href="@{/member/list}">목록으로</a>
+</body>
+</html>

@@ -18,3 +18,10 @@
 
 # Logs
 *.log
+
+# Large files (GitHub file size limit: 100MB)
+*.jar
+*.exe
+*.tar
+*.zip
+*.pem
